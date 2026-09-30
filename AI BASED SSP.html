@@ -1,0 +1,4244 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudySmart - AI-Powered Study Planner</title>
+  <meta name="description" content="StudySmart is an AI-powered study planner that helps students organize coursework, manage deadlines, and optimize study schedules with an intelligent blue dashboard.">
+  
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Master Stylesheet -->
+  <style>
+/* ==========================================================================
+   StudySmart · Master Stylesheet (Cyber Sapphire Blue Theme)
+   ========================================================================== */
+:root {
+  --bg-midnight: #070b14;
+  --bg-primary: #0c1222;
+  --bg-surface: #121a30;
+  --bg-card: #17223b;
+  --bg-card-hover: #1e2c4d;
+  
+  --accent-cyan: #38bdf8;
+  --accent-blue: #0284c7;
+  --accent-royal: #2563eb;
+  --accent-light: #7dd3fc;
+  --accent-glow: rgba(56, 189, 248, 0.4);
+  --accent-glow-subtle: rgba(56, 189, 248, 0.15);
+  --royal-glow: rgba(37, 99, 235, 0.35);
+
+  --emerald: #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.3);
+  --cyan: #06b6d4;
+  --rose: #f43f5e;
+  --amber: #f59e0b;
+  --indigo: #6366f1;
+
+  --text-main: #f8fafc;
+  --text-sub: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --border-color: rgba(56, 189, 248, 0.18);
+  --border-hover: rgba(56, 189, 248, 0.5);
+  --border-card: rgba(148, 163, 184, 0.12);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 26px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.7);
+  --shadow-blue: 0 0 30px var(--accent-glow);
+
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--bg-midnight);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(56, 189, 248, 0.1) 0%, transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(37, 99, 235, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(12, 18, 34, 1) 0%, transparent 100%);
+  background-attachment: fixed;
+}
+
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: var(--bg-midnight); }
+::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.3); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan); }
+
+h1, h2, h3, h4, .brand-logo, .hero-title, .splash-title {
+  font-family: 'Montserrat', 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+}
+
+/* INTRO / SPLASH SCREEN ANIMATION */
+.splash-screen-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: radial-gradient(circle at 50% 45%, #0e172e 0%, #060913 70%, #03050a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.7s;
+  overflow: hidden;
+  cursor: pointer;
+  animation: splashAutoDismiss 3.1s forwards;
+}
+
+@keyframes splashAutoDismiss {
+  0%, 75% { opacity: 1; visibility: visible; }
+  92% { opacity: 0; visibility: hidden; }
+  100% { opacity: 0; visibility: hidden; pointer-events: none; display: none; }
+}
+
+.splash-screen-overlay.splash-hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: scale(1.05) !important;
+  pointer-events: none !important;
+  display: none !important;
+}
+
+.splash-ambient-glow {
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(37, 99, 235, 0.14) 45%, transparent 70%);
+  filter: blur(60px);
+  animation: ambientPulse 3s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes ambientPulse {
+  0% { transform: scale(0.85); opacity: 0.6; }
+  100% { transform: scale(1.2); opacity: 1; }
+}
+
+.splash-brand-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  min-height: 120px;
+}
+
+.splash-logo-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 26px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(37, 99, 235, 0.4));
+  border: 2px solid var(--accent-cyan);
+  box-shadow: 0 0 40px var(--accent-glow), inset 0 0 25px rgba(56, 189, 248, 0.3);
+  opacity: 0;
+  transform: scale(0.2) rotate(-15deg);
+  animation: logoEntrance 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 0.15s,
+             logoSlideLeft 0.85s cubic-bezier(0.65, 0, 0.35, 1) forwards 0.85s;
+}
+
+.splash-logo-pulse {
+  position: absolute;
+  inset: -14px;
+  border-radius: 34px;
+  border: 1.5px solid rgba(56, 189, 248, 0.6);
+  animation: rippleEffect 2s infinite;
+}
+
+@keyframes rippleEffect {
+  0% { transform: scale(0.95); opacity: 0.9; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.splash-logo-icon {
+  font-size: 3rem;
+  color: var(--accent-cyan);
+  filter: drop-shadow(0 0 16px var(--accent-cyan));
+}
+
+@keyframes logoEntrance {
+  0% { opacity: 0; transform: scale(0.2) rotate(-20deg); filter: blur(8px); }
+  60% { opacity: 1; transform: scale(1.08) rotate(4deg); filter: blur(0); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0); }
+}
+
+@keyframes logoSlideLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-24px); }
+}
+
+.splash-text-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 0;
+  opacity: 0;
+  transform: translateX(45px);
+  animation: nameRevealFromRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.95s;
+}
+
+@keyframes nameRevealFromRight {
+  0% { max-width: 0; opacity: 0; transform: translateX(50px); filter: blur(12px); }
+  40% { opacity: 0.8; filter: blur(4px); }
+  100% { max-width: 500px; opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+
+.splash-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: #ffffff;
+  line-height: 1.1;
+  text-shadow: 0 4px 25px rgba(0,0,0,0.7);
+}
+
+.splash-title span {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, #60a5fa 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 22px var(--accent-glow));
+}
+
+.splash-tagline {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent-light);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  opacity: 0;
+  animation: taglineFade 0.6s ease forwards 1.4s;
+}
+
+@keyframes taglineFade {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 0.95; transform: translateY(0); }
+}
+
+/* TOP NAVIGATION */
+.navbar-top {
+  background-color: rgba(12, 18, 34, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 3rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+}
+
+.nav-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transition: var(--transition);
+}
+.nav-brand-wrap:hover { transform: translateY(-1px); }
+.brand-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(37, 99, 235, 0.3));
+  border: 1px solid var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px var(--accent-glow-subtle);
+}
+.brand-cap-icon {
+  font-size: 1.35rem;
+  color: var(--accent-cyan);
+  filter: drop-shadow(0 0 8px var(--accent-glow));
+}
+.brand-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+.brand-title span {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 15px var(--accent-glow);
+}
+
+.nav-links-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-item-link {
+  color: var(--text-sub);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+  border-radius: var(--radius-sm);
+  position: relative;
+  transition: var(--transition);
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-item-link:hover {
+  color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.08);
+}
+.nav-item-link.active {
+  color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+}
+.nav-item-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 12px var(--accent-cyan);
+}
+
+.nav-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-icon-btn {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid var(--border-color);
+  color: var(--text-sub);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-icon-btn:hover {
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.18);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--accent-glow-subtle);
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid var(--border-color);
+  color: var(--accent-cyan);
+  font-size: 1.2rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+/* BUTTONS */
+.btn-blue {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-royal) 100%);
+  color: #ffffff;
+  border: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  transition: var(--transition-bounce);
+  box-shadow: 0 4px 18px var(--accent-glow);
+}
+.btn-blue:hover {
+  background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 100%);
+  color: #0c1222;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px var(--accent-glow);
+}
+
+.btn-blue-outline {
+  background-color: transparent;
+  color: var(--accent-cyan);
+  border: 2px solid var(--accent-cyan);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.8rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  transition: var(--transition-bounce);
+}
+.btn-blue-outline:hover {
+  background-color: var(--accent-cyan);
+  color: #0c1222;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 22px var(--accent-glow);
+}
+
+.btn-dark {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.68rem 1.4rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+.btn-dark:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  color: var(--accent-cyan);
+  transform: translateY(-2px);
+}
+
+/* FAB */
+.fab-quick-add {
+  position: fixed;
+  bottom: 2.4rem;
+  right: 2.4rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-royal) 100%);
+  color: #ffffff;
+  border: none;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 25px var(--accent-glow), 0 4px 14px rgba(0,0,0,0.6);
+  z-index: 999;
+  transition: var(--transition-bounce);
+}
+.fab-quick-add:hover {
+  transform: scale(1.12) rotate(90deg);
+  background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 100%);
+  color: #0c1222;
+  box-shadow: 0 12px 32px var(--accent-glow);
+}
+
+/* MAIN CONTAINER */
+.main-content-wrap {
+  flex: 1;
+  max-width: 1380px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 5rem;
+}
+
+.page-view {
+  display: none;
+  animation: pageReveal 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.page-view.active { display: block; }
+@keyframes pageReveal {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.section-title-wrap { margin-bottom: 2rem; }
+.section-title-wrap h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-title-wrap p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
+
+/* HERO */
+.hero-container {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: center;
+  padding: 2.5rem 0 4.5rem;
+}
+.hero-left-content { display: flex; flex-direction: column; }
+.hero-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: var(--accent-cyan);
+  font-size: 0.85rem;
+  font-weight: 700;
+  width: fit-content;
+  margin-bottom: 1.4rem;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+}
+.hero-title {
+  font-size: 3.8rem;
+  line-height: 1.15;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 1.6rem;
+  letter-spacing: -1px;
+}
+.hero-title span {
+  display: block;
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px var(--accent-glow));
+}
+.hero-description {
+  font-size: 1.12rem;
+  line-height: 1.7;
+  color: var(--text-sub);
+  margin-bottom: 2.4rem;
+  max-width: 580px;
+}
+.hero-buttons-row {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+.hero-right-visual { position: relative; }
+.hero-image-card {
+  width: 100%;
+  height: 390px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px var(--accent-glow-subtle);
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+.hero-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.hero-image-card:hover img { transform: scale(1.05); }
+.hero-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(7, 11, 20, 0.9) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.8rem;
+}
+.hero-overlay-badge {
+  background: rgba(12, 18, 34, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 15px var(--accent-glow-subtle);
+}
+
+/* FEATURES */
+.home-features-section {
+  padding: 3.5rem 0 2rem;
+  border-top: 1px solid var(--border-card);
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+.feature-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.4rem;
+  transition: var(--transition-bounce);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.feature-card:hover {
+  border-color: var(--accent-cyan);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-blue);
+  background-color: var(--bg-card);
+}
+.feature-icon-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 20px var(--accent-glow-subtle);
+}
+.feature-card h3 {
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 0.8rem;
+}
+.feature-card p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* DASHBOARD */
+.dash-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.dash-stat-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+  transition: var(--transition);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+.dash-stat-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  background-color: var(--bg-card);
+}
+.dash-stat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+.dash-stat-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+}
+.dash-stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+.dash-stat-val {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+.dash-stat-sub {
+  font-size: 0.82rem;
+  color: var(--emerald);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.blue-glass-panel {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.6rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.panel-head h3 {
+  font-size: 1.3rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dash-schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dash-schedule-item {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-left: 4px solid var(--accent-cyan);
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: var(--transition);
+}
+.dash-schedule-item:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateX(4px);
+}
+.dash-schedule-item.done {
+  opacity: 0.55;
+  border-left-color: var(--emerald);
+}
+.dash-schedule-item.done .sched-sub {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+.sched-left {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  flex: 1;
+}
+.sched-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  min-width: 120px;
+}
+.sched-info { display: flex; flex-direction: column; }
+.sched-sub {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+}
+.sched-topic {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.sched-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.action-round-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+.action-round-btn:hover {
+  background: var(--accent-cyan);
+  color: #0c1222;
+  border-color: var(--accent-cyan);
+  transform: scale(1.1);
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+.action-round-btn.danger:hover {
+  background: var(--rose);
+  color: #ffffff;
+  border-color: var(--rose);
+  box-shadow: 0 0 14px rgba(244, 63, 94, 0.4);
+}
+
+.subject-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.subj-box {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+  transition: var(--transition);
+  position: relative;
+}
+.subj-box:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+  background-color: var(--bg-card-hover);
+}
+.subj-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+.subj-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.blue-badge {
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 14px;
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+.progress-bar-rail {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  margin: 12px 0;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--accent-cyan), #3b82f6);
+  box-shadow: 0 0 10px var(--accent-glow);
+  transition: width 0.6s ease;
+}
+
+/* PLANNER */
+.weekly-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  overflow-x: auto;
+}
+.cal-day-col {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  min-width: 140px;
+}
+.cal-day-col.today {
+  border-color: var(--accent-cyan);
+  background-color: rgba(56, 189, 248, 0.08);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.12);
+}
+.cal-day-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  text-align: center;
+}
+.cal-day-col.today .cal-day-name {
+  color: var(--accent-cyan);
+}
+.cal-day-num {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-align: center;
+  margin: 3px 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-card);
+}
+.cal-event-pill {
+  background: rgba(56, 189, 248, 0.14);
+  border-left: 3px solid var(--accent-cyan);
+  color: var(--accent-light);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.45rem 0.6rem;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.cal-event-pill:hover {
+  background: var(--accent-cyan);
+  color: #0c1222;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--accent-glow-subtle);
+}
+
+/* STUDY LIBRARY */
+.library-controls-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+.library-filter-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.lib-filter-pill {
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.lib-filter-pill:hover, .lib-filter-pill.active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 12px var(--accent-glow-subtle);
+}
+.library-search-box {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.2rem;
+  gap: 10px;
+  min-width: 280px;
+}
+.library-search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 0.9rem;
+  width: 100%;
+}
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.8rem;
+}
+.lib-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 1.8rem;
+  transition: var(--transition-bounce);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+}
+.lib-card:hover {
+  border-color: var(--accent-cyan);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-blue);
+  background-color: var(--bg-card);
+}
+.lib-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+}
+.lib-icon-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--accent-cyan);
+}
+.lib-type-tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 10px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--accent-light);
+  text-transform: uppercase;
+}
+.lib-card h4 {
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+}
+.lib-card-subj {
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+.lib-card p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.4rem;
+  flex: 1;
+}
+.lib-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-card);
+}
+
+/* ANALYTICS */
+.analytics-dual-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.chart-box-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 290px;
+}
+
+/* AI ASSISTANT */
+.coach-grid-wrap {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  gap: 1.8rem;
+  height: calc(100vh - 210px);
+  min-height: 580px;
+}
+.chat-window-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+.chat-top-header {
+  padding: 1rem 1.6rem;
+  background: rgba(12, 18, 34, 0.95);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.chat-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+.status-dot-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--emerald);
+  box-shadow: 0 0 8px var(--emerald);
+  animation: pulseDot 2s infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+.model-picker-select {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+}
+.chat-stream-box {
+  flex: 1;
+  padding: 1.8rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+.chat-msg {
+  display: flex;
+  gap: 12px;
+  max-width: 88%;
+  animation: messageSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes messageSlideIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.chat-msg.bot { align-self: flex-start; }
+.chat-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+.chat-msg-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-royal));
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+.chat-msg.user .chat-msg-avatar {
+  background: linear-gradient(135deg, #0284c7, #2563eb);
+  color: #ffffff;
+}
+.chat-msg-bubble {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.1rem 1.4rem;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: var(--text-main);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.chat-msg.user .chat-msg-bubble {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #ffffff;
+  border: none;
+  font-weight: 500;
+  box-shadow: 0 4px 18px rgba(37, 99, 235, 0.35);
+}
+.chat-msg-bubble h3, .chat-msg-bubble h4 {
+  color: var(--accent-cyan);
+  margin: 10px 0 6px;
+  font-size: 1.05rem;
+}
+.chat-msg-bubble ul, .chat-msg-bubble ol {
+  margin: 8px 0 8px 22px;
+}
+.chat-msg-bubble li { margin-bottom: 5px; }
+.chat-msg-bubble code {
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--accent-light);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+}
+.chat-msg-bubble pre {
+  background: #080c18;
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 10px 0;
+}
+.chat-msg-bubble pre code {
+  background: transparent;
+  padding: 0;
+  color: #38bdf8;
+}
+
+/* TYPING INDICATOR */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+}
+.typing-indicator span {
+  width: 7px;
+  height: 7px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+.typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 8px var(--accent-cyan); }
+}
+
+.chat-bar-input-wrap {
+  padding: 1.2rem 1.6rem;
+  background: rgba(12, 18, 34, 0.95);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.chat-bar-input-wrap input {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: 0.85rem 1.4rem;
+  color: #ffffff;
+  font-size: 0.94rem;
+  outline: none;
+  transition: var(--transition);
+}
+.chat-bar-input-wrap input:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 15px var(--accent-glow-subtle);
+}
+
+/* MODALS */
+.modal-backdrop-layer {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 9, 16, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1.5rem;
+}
+.modal-backdrop-layer.active {
+  display: flex;
+  animation: fadeIn 0.25s ease;
+}
+@keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+.modal-body-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 2.4rem;
+  max-width: 540px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 35px var(--accent-glow-subtle);
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes scaleUp {
+  0% { transform: scale(0.94); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.modal-head-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.6rem;
+}
+.modal-head-row h3 {
+  font-size: 1.35rem;
+  color: var(--accent-cyan);
+}
+.modal-close-icon-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: var(--text-muted);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+.modal-close-icon-btn:hover { background: var(--rose); color: #ffffff; }
+
+.form-group-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 1.2rem;
+}
+.form-group-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.form-group-field input, .form-group-field select, .form-group-field textarea {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1rem;
+  color: #ffffff;
+  font-size: 0.92rem;
+  outline: none;
+  transition: var(--transition);
+}
+.form-group-field input:focus, .form-group-field select:focus, .form-group-field textarea:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 12px var(--accent-glow-subtle);
+}
+
+/* TOAST */
+.toast-shelf {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+.toast-popup {
+  background: var(--bg-surface);
+  border: 1px solid var(--accent-cyan);
+  backdrop-filter: blur(16px);
+  padding: 0.9rem 1.5rem;
+  border-radius: var(--radius-full);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px var(--accent-glow-subtle);
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slideInRight {
+  0% { transform: translateX(50px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* FOOTER */
+.site-footer {
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+  padding: 2.2rem 3rem 1.5rem;
+  margin-top: auto;
+}
+.footer-inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.footer-text {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+/* AUTH / LOGIN SCREEN OVERLAY */
+.auth-screen-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  background: radial-gradient(circle at 50% 30%, #0d162d 0%, #060913 70%, #03050a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.auth-screen-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.auth-card-box {
+  background: rgba(18, 26, 48, 0.88);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75), 0 0 35px var(--accent-glow-subtle);
+  border-radius: var(--radius-xl);
+  max-width: 460px;
+  width: 100%;
+  padding: 2.5rem 2.2rem;
+  position: relative;
+  z-index: 10;
+  animation: authCardReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+@keyframes authCardReveal {
+  0% { opacity: 0; transform: translateY(24px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+
+.auth-brand-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 0.8rem;
+}
+
+.auth-brand-badge h2 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.auth-brand-badge h2 span {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 15px var(--accent-glow);
+}
+
+.auth-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.auth-tab-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: rgba(12, 18, 34, 0.7);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.auth-tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.auth-tab-btn.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(37, 99, 235, 0.28));
+  color: var(--accent-cyan);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.btn-google-auth {
+  width: 100%;
+  background-color: #ffffff;
+  color: #1f2937;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.78rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.btn-google-auth:hover {
+  background-color: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.3);
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 1.4rem 0;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-card);
+}
+
+.auth-divider span {
+  padding: 0 12px;
+}
+
+.password-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrap input {
+  padding-right: 42px;
+}
+
+.btn-toggle-pwd {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-toggle-pwd:hover {
+  color: var(--accent-cyan);
+}
+
+.auth-options-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.84rem;
+  margin-top: -0.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.auth-checkbox-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-sub);
+  cursor: pointer;
+}
+
+.auth-checkbox-wrap input[type="checkbox"] {
+  accent-color: var(--accent-cyan);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.auth-forgot-link {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.auth-forgot-link:hover {
+  text-decoration: underline;
+  color: var(--accent-light);
+}
+
+.auth-submit-btn {
+  width: 100%;
+  padding: 0.88rem;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+  margin-top: 0.5rem;
+}
+
+.auth-footer-demo {
+  margin-top: 1.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border-card);
+  text-align: center;
+}
+
+.btn-demo-guest {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px dashed var(--accent-cyan);
+  color: var(--accent-light);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.65rem 1.2rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-demo-guest:hover {
+  background: rgba(56, 189, 248, 0.18);
+  color: #ffffff;
+  border-style: solid;
+  transform: translateY(-1px);
+}
+
+/* User pill in top navbar */
+.nav-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px 4px 6px;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav-user-pill:hover {
+  background: rgba(56, 189, 248, 0.16);
+  border-color: var(--accent-cyan);
+}
+
+.nav-user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-royal));
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-user-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.nav-icon-btn.danger-hover:hover {
+  border-color: var(--rose);
+  color: var(--rose);
+  background: rgba(244, 63, 94, 0.12);
+}
+
+@media (max-width: 992px) {
+  .hero-container { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+  .hero-badge-pill, .hero-buttons-row { margin-left: auto; margin-right: auto; justify-content: center; }
+  .hero-description { margin: 0 auto 2rem; }
+  .analytics-dual-charts, .coach-grid-wrap { grid-template-columns: 1fr; }
+  .coach-grid-wrap { height: auto; }
+}
+
+@media (max-width: 768px) {
+  .navbar-top { padding: 1rem 1.5rem; }
+  .nav-links-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-midnight);
+    flex-direction: column;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    gap: 0.8rem;
+  }
+  .nav-links-menu.mobile-open { display: flex; }
+  .mobile-menu-toggle { display: block; }
+  .hero-title { font-size: 2.8rem; }
+  .main-content-wrap { padding: 1.5rem 1rem 4rem; }
+  .weekly-calendar-grid { grid-template-columns: repeat(7, 130px); }
+  .splash-title { font-size: 2.4rem; }
+  .splash-logo-box { width: 70px; height: 70px; }
+  .splash-logo-icon { font-size: 2rem; }
+  .nav-user-name { display: none; }
+  .auth-card-box { padding: 2rem 1.5rem; }
+}
+
+/* PRESET SUBJECT CHIPS */
+.preset-chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+  max-height: 140px;
+  overflow-y: auto;
+  padding: 4px;
+}
+.preset-chip-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-sub);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.preset-chip-btn:hover, .preset-chip-btn.selected {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 12px var(--accent-glow-subtle);
+  transform: translateY(-1px);
+}
+
+/* MANDATORY GOOGLE AUTH CARD */
+.google-auth-mandatory-card {
+  background: rgba(12, 18, 34, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: inset 0 0 20px rgba(56, 189, 248, 0.05);
+}
+.google-logo-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.5rem;
+}
+
+/* ULTRA-ATTRACTIVE PROFILE CARD */
+.profile-main-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.profile-hero-header {
+  background: linear-gradient(135deg, rgba(12, 18, 34, 0.95), rgba(37, 99, 235, 0.25));
+  border-bottom: 1px solid var(--border-color);
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
+.profile-avatar-container {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+}
+.profile-avatar-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+  opacity: 0.6;
+  animation: pulseDot 3s infinite;
+}
+.profile-avatar-big {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-royal));
+  border: 3px solid #ffffff;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.6rem;
+  font-weight: 800;
+  box-shadow: 0 0 25px var(--accent-glow);
+}
+.profile-hero-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.profile-hero-name {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+.profile-google-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  width: fit-content;
+}
+.profile-google-badge .verified-tag {
+  color: var(--emerald);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 6px;
+}
+.profile-form-body {
+  padding: 2.5rem;
+}
+
+
+</style>
+</head>
+<body>
+
+  <!-- INTRO / SPLASH SCREEN OVERLAY -->
+  <div class="splash-screen-overlay" id="appSplashOverlay">
+    <div class="splash-ambient-glow"></div>
+    <div class="splash-brand-cluster">
+      <div class="splash-logo-box" id="splashLogoBox">
+        <div class="splash-logo-pulse"></div>
+        <i class="fas fa-graduation-cap splash-logo-icon"></i>
+      </div>
+      <div class="splash-text-box" id="splashTextBox">
+        <h1 class="splash-title">Study<span>Smart</span></h1>
+        <p class="splash-tagline">AI-Powered Study Planner</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH / LOGIN OVERLAY (Appears after entry splash or on logout) -->
+  <div class="auth-screen-overlay" id="appAuthOverlay">
+    <div class="auth-ambient-glow"></div>
+    <div class="auth-card-box">
+      <div class="auth-header">
+        <div class="auth-brand-badge">
+          <div class="brand-icon-box" style="width: 44px; height: 44px;">
+            <i class="fas fa-graduation-cap brand-cap-icon" style="font-size: 1.4rem;"></i>
+          </div>
+          <h2>Study<span>Smart</span></h2>
+        </div>
+        <p class="auth-subtitle">Mandatory Sign-In with Google Account to access your AI study dashboard.</p>
+      </div>
+
+      <!-- Mandatory Google Authentication Banner -->
+      <div class="google-auth-mandatory-card">
+        <div class="google-logo-header">
+          <svg class="google-svg-icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span style="font-weight: 700; color: #ffffff;">Google Account Authentication</span>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--text-sub); margin-bottom: 1rem;">Linking a valid Google Account email is mandatory to log in.</p>
+
+        <form id="googleLoginForm" onsubmit="event.preventDefault(); handleGoogleSignIn();">
+          <div class="form-group-field" style="margin-bottom: 1rem;">
+            <label for="googleAuthEmailInput"><i class="fab fa-google" style="color: #4285F4;"></i> Required Google Email</label>
+            <input type="email" id="googleAuthEmailInput" placeholder="e.g. lohithharshu201@gmail.com" required autocomplete="email" value="lohithharshu201@gmail.com">
+          </div>
+
+          <div class="form-group-field" style="margin-bottom: 1.2rem;">
+            <label for="googleAuthNameInput"><i class="fas fa-user"></i> Full Name</label>
+            <input type="text" id="googleAuthNameInput" placeholder="e.g. Lohith Naramamidi" value="Lohith">
+          </div>
+
+          <button type="submit" class="btn-google-auth" id="btnGoogleAuth">
+            <svg class="google-svg-icon" viewBox="0 0 24 24" width="20" height="20">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            <span id="googleBtnText">Link Google Account & Sign In</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Quick Demo Access -->
+      <div class="auth-footer-demo" style="margin-top: 1.4rem;">
+        <button type="button" class="btn-demo-guest" onclick="handleGuestDemoLogin()">
+          <i class="fas fa-bolt" style="color: var(--amber);"></i> Quick Google Sign-In Demo (Lohith)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP NAVBAR -->
+  <header class="navbar-top">
+    <a class="nav-brand-wrap" onclick="navigateTo('home')">
+      <div class="brand-icon-box">
+        <i class="fas fa-graduation-cap brand-cap-icon"></i>
+      </div>
+      <span class="brand-title">Study<span>Smart</span></span>
+    </a>
+
+    <ul class="nav-links-menu" id="navbarLinksMenu">
+      <li class="nav-item-link active" data-page="home" onclick="navigateTo('home')">
+        <i class="fas fa-home"></i> Home
+      </li>
+      <li class="nav-item-link" data-page="dashboard" onclick="navigateTo('dashboard')">
+        <i class="fas fa-th-large"></i> Dashboard
+      </li>
+      <li class="nav-item-link" data-page="planner" onclick="navigateTo('planner')">
+        <i class="fas fa-calendar-alt"></i> Schedule Planner
+      </li>
+      <li class="nav-item-link" data-page="library" onclick="navigateTo('library')">
+        <i class="fas fa-book-reader"></i> Library
+      </li>
+      <li class="nav-item-link" data-page="analytics" onclick="navigateTo('analytics')">
+        <i class="fas fa-chart-line"></i> Analytics
+      </li>
+      <li class="nav-item-link" data-page="coach" onclick="navigateTo('coach')">
+        <i class="fas fa-robot"></i> AI Assistant
+      </li>
+      <li class="nav-item-link" data-page="profile" onclick="navigateTo('profile')">
+        <i class="fas fa-user-cog"></i> Profile
+      </li>
+    </ul>
+
+    <div class="nav-actions-right">
+      <div class="nav-user-pill" id="navUserPill" onclick="navigateTo('profile')" title="Student Profile">
+        <div class="nav-user-avatar" id="navUserAvatar">L</div>
+        <span class="nav-user-name" id="navUserName">Lohith</span>
+      </div>
+      <button class="nav-icon-btn" onclick="navigateTo('profile')" title="Settings & Profile" aria-label="Settings">
+        <i class="fas fa-cog"></i>
+      </button>
+      <button class="nav-icon-btn danger-hover" onclick="handleSignOut()" title="Sign Out" aria-label="Sign Out">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+      <button class="mobile-menu-toggle" onclick="toggleMobileNav()" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="main-content-wrap">
+
+    <!-- VIEW 1: HOME -->
+    <section class="page-view active" id="page-home">
+      <div class="hero-container">
+        <div class="hero-left-content">
+          <div class="hero-badge-pill">
+            <i class="fas fa-sparkles"></i> AI-Powered Academic Success
+          </div>
+          <h1 class="hero-title">
+            <span>Plan Smarter,</span>
+            Study Better
+          </h1>
+          <p class="hero-description">
+            StudySmart is your next-generation intelligent study dashboard designed to organize coursework, optimize daily study schedules, and accelerate syllabus mastery effortlessly.
+          </p>
+          <div class="hero-buttons-row">
+            <button class="btn-blue" onclick="navigateTo('dashboard')">
+              <i class="fas fa-th-large"></i> Open Dashboard
+            </button>
+            <button class="btn-blue-outline" onclick="navigateTo('planner')">
+              <i class="fas fa-calendar-alt"></i> Schedule Planner
+            </button>
+            <button class="btn-dark" onclick="navigateTo('coach')">
+              <i class="fas fa-robot"></i> Ask AI Assistant
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-right-visual">
+          <div class="hero-image-card">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Student studying with StudySmart dashboard">
+            <div class="hero-image-overlay">
+              <div class="hero-overlay-badge">
+                <i class="fas fa-brain"></i> AI Study Matrix Active
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Highlights -->
+      <div class="home-features-section">
+        <div style="text-align: center;">
+          <h2 style="font-size: 2.2rem; color: #ffffff; font-weight: 800;">Why Students Excel With <span style="color: var(--accent-cyan);">StudySmart</span></h2>
+          <p style="color: var(--text-muted); font-size: 1rem; margin-top: 6px;">Engineered with high-yield learning methodologies and intelligent automation.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card" onclick="navigateTo('planner')">
+            <div class="feature-icon-box"><i class="fas fa-calendar-week"></i></div>
+            <h3>Intelligent Timetable</h3>
+            <p>Adaptive scheduling algorithms automatically re-balance your study blocks based on weak areas, retention urgency, and exam deadlines.</p>
+          </div>
+
+          <div class="feature-card" onclick="navigateTo('library')">
+            <div class="feature-icon-box"><i class="fas fa-book-reader"></i></div>
+            <h3>Study Library</h3>
+            <p>Access notes, cheat sheets, and books across all your custom subjects with instant search and AI study recommendations.</p>
+          </div>
+
+          <div class="feature-card" onclick="navigateTo('coach')">
+            <div class="feature-icon-box"><i class="fas fa-robot"></i></div>
+            <h3>ChatGPT & Gemini AI Assistant</h3>
+            <p>Get instant 2-hour cram plans, complex derivations broken down, and active recall drills with comprehensive, high-speed responses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: DASHBOARD -->
+    <section class="page-view" id="page-dashboard">
+      <div class="section-title-wrap" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2><i class="fas fa-th-large" style="color: var(--accent-cyan);"></i> Study Dashboard</h2>
+          <p>Your centralized command center for today's tasks, deadlines, and mastery levels.</p>
+        </div>
+        <button class="btn-dark" style="border-color: var(--rose); color: var(--rose);" onclick="clearAllAppDashboardData()">
+          <i class="fas fa-trash-alt"></i> Clear All Data & Analytics
+        </button>
+      </div>
+
+      <div class="dash-stats-grid">
+        <div class="dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-label">Tasks Pending</span>
+            <div class="dash-stat-icon"><i class="fas fa-tasks"></i></div>
+          </div>
+          <div class="dash-stat-val" id="dashTaskCount">5</div>
+          <div class="dash-stat-sub" id="dashTaskSub"><i class="fas fa-check-circle"></i> 0 completed today</div>
+        </div>
+
+        <div class="dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-label">Study Time</span>
+            <div class="dash-stat-icon"><i class="far fa-clock"></i></div>
+          </div>
+          <div class="dash-stat-val" id="dashStudyHours">4h 30m</div>
+          <div class="dash-stat-sub"><i class="fas fa-arrow-up"></i> +18% this week</div>
+        </div>
+
+        <div class="dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-label">Syllabus Mastery</span>
+            <div class="dash-stat-icon"><i class="fas fa-brain"></i></div>
+          </div>
+          <div class="dash-stat-val" id="dashMasteryRate">78%</div>
+          <div class="dash-stat-sub"><i class="fas fa-shield-alt"></i> Strong retention</div>
+        </div>
+
+        <div class="dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-label">Study Streak</span>
+            <div class="dash-stat-icon"><i class="fas fa-fire" style="color: #f59e0b;"></i></div>
+          </div>
+          <div class="dash-stat-val" id="dashStreakCount">14 Days</div>
+          <div class="dash-stat-sub" style="color: var(--accent-cyan);"><i class="fas fa-bolt"></i> Streak active</div>
+        </div>
+      </div>
+
+      <div class="blue-glass-panel">
+        <div class="panel-head">
+          <h3><i class="fas fa-calendar-day" style="color: var(--accent-cyan);"></i> Today's Schedule</h3>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-blue" onclick="openQuickAddModal()"><i class="fas fa-plus"></i> Add Session</button>
+            <button class="btn-dark" onclick="openConfirmRebalanceModal()"><i class="fas fa-wand-magic-sparkles" style="color: var(--accent-cyan);"></i> AI Re-balance</button>
+          </div>
+        </div>
+
+        <div class="dash-schedule-list" id="dashScheduleList"></div>
+      </div>
+
+      <div class="blue-glass-panel">
+        <div class="panel-head">
+          <h3><i class="fas fa-book-open" style="color: var(--accent-cyan);"></i> Subject Mastery Intelligence</h3>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-blue" onclick="openAddSubjectModal()"><i class="fas fa-plus"></i> Add Subject</button>
+            <button class="btn-dark" onclick="navigateTo('planner')">View Full Syllabus →</button>
+          </div>
+        </div>
+        <div class="subject-card-grid" id="dashSubjectGrid"></div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: SCHEDULE PLANNER -->
+    <section class="page-view" id="page-planner">
+      <div class="section-title-wrap">
+        <h2><i class="fas fa-calendar-alt" style="color: var(--accent-cyan);"></i> Schedule Planner</h2>
+        <p>Interactive weekly timetable matrix and daily study task distribution.</p>
+      </div>
+
+      <div class="blue-glass-panel">
+        <div class="panel-head">
+          <h3><i class="fas fa-calendar-week" style="color: var(--accent-cyan);"></i> 7-Day Weekly Matrix</h3>
+          <button class="btn-blue" onclick="openConfirmRebalanceModal()"><i class="fas fa-wand-magic-sparkles"></i> Optimize Week</button>
+        </div>
+        <div class="weekly-calendar-grid" id="weeklyCalendarGrid"></div>
+      </div>
+
+      <div class="blue-glass-panel">
+        <div class="panel-head">
+          <h3><i class="fas fa-list-check" style="color: var(--accent-cyan);"></i> Full Study Queue</h3>
+          <button class="btn-blue" onclick="openQuickAddModal()"><i class="fas fa-plus"></i> Add Session</button>
+        </div>
+        <div class="dash-schedule-list" id="plannerScheduleListFull"></div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: STUDY LIBRARY -->
+    <section class="page-view" id="page-library">
+      <div class="section-title-wrap">
+        <h2><i class="fas fa-book-reader" style="color: var(--accent-cyan);"></i> Study Library & Resource Vault</h2>
+        <p>Curated notes, reference cheat sheets, and textbooks for your coursework.</p>
+      </div>
+
+      <div class="library-controls-bar">
+        <div class="library-filter-pills">
+          <button class="lib-filter-pill active" onclick="filterLibrary('all', this)">All Resources</button>
+          <button class="lib-filter-pill" onclick="filterLibrary('note', this)">📄 Notes</button>
+          <button class="lib-filter-pill" onclick="filterLibrary('cheatsheet', this)">⚡ Cheat Sheets</button>
+          <button class="lib-filter-pill" onclick="filterLibrary('book', this)">📚 Reference Books</button>
+          <button class="lib-filter-pill" onclick="filterLibrary('code', this)">💻 Code Repos</button>
+        </div>
+
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <div class="library-search-box">
+            <i class="fas fa-search" style="color: var(--text-muted);"></i>
+            <input type="text" id="libSearchInput" placeholder="Search notes, formulas, topics..." oninput="searchLibrary(this.value)">
+          </div>
+          <button class="btn-blue" onclick="openAddResourceModal()"><i class="fas fa-plus"></i> Add Resource</button>
+        </div>
+      </div>
+
+      <div class="library-grid" id="libraryCardsGrid"></div>
+    </section>
+
+    <!-- VIEW 5: ANALYTICS -->
+    <section class="page-view" id="page-analytics">
+      <div class="section-title-wrap">
+        <h2><i class="fas fa-chart-line" style="color: var(--accent-cyan);"></i> Analytics & Learning Metrics</h2>
+        <p>Real-time visual reports on your study hours, consistency, and subject distribution.</p>
+      </div>
+
+      <div class="analytics-dual-charts">
+        <div class="chart-box-card">
+          <h3 style="font-size: 1.2rem; color: #ffffff; margin-bottom: 1.2rem;">
+            <i class="fas fa-chart-bar" style="color: var(--accent-cyan);"></i> Weekly Study Hours (Mon - Sun)
+          </h3>
+          <div class="canvas-wrapper">
+            <canvas id="analyticsWeeklyChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-box-card">
+          <h3 style="font-size: 1.2rem; color: #ffffff; margin-bottom: 1.2rem;">
+            <i class="fas fa-chart-pie" style="color: var(--accent-cyan);"></i> Subject Time Distribution
+          </h3>
+          <div class="canvas-wrapper">
+            <canvas id="analyticsDonutChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 6: AI ASSISTANT -->
+    <section class="page-view" id="page-coach">
+      <div class="section-title-wrap">
+        <h2><i class="fas fa-robot" style="color: var(--accent-cyan);"></i> AI Study Assistant</h2>
+        <p>Ultra-fast academic intelligence powered like ChatGPT & Gemini with in-depth explanations.</p>
+      </div>
+
+      <div class="coach-grid-wrap">
+        <div class="blue-glass-panel" style="margin-bottom: 0; display: flex; flex-direction: column; gap: 1rem;">
+          <div>
+            <h3 style="font-size: 1.15rem; color: var(--accent-cyan); margin-bottom: 0.8rem;"><i class="fas fa-bolt"></i> High-Speed Prompts</h3>
+            <div style="display: flex; flex-direction: column; gap: 9px;">
+              <button class="btn-dark" style="text-align: left; justify-content: flex-start;" onclick="sendAiPrompt('Create a comprehensive 2-hour study plan for tonight with precise time blocks, pomodoro intervals, and high-yield focus tasks.')">
+                ⚡ 2-Hour High-Yield Plan
+              </button>
+              <button class="btn-dark" style="text-align: left; justify-content: flex-start;" onclick="sendAiPrompt('Explain Eigenvalues and Eigenvectors in deep intuitive detail with characteristic polynomials, 2x2 matrix step-by-step example, geometric meaning, and university exam tips.')">
+                📐 Deep Eigenvalues Derivation
+              </button>
+              <button class="btn-dark" style="text-align: left; justify-content: flex-start;" onclick="sendAiPrompt('Provide a full exhaustive breakdown of Binary Search Trees (BST), AVL Rotations (LL, RR, LR, RL) with ASCII diagram, and complete Python/C++ search and insertion code with O(log N) proofs.')">
+                💻 Complete BST & AVL Guide
+              </button>
+              <button class="btn-dark" style="text-align: left; justify-content: flex-start;" onclick="sendAiPrompt('Generate 5 challenging university exam active recall practice questions covering UV-IR Spectroscopy, Beer-Lambert Law, and Chemical Kinetics with detailed solutions.')">
+                ⚗️ Active Recall Exam Drill
+              </button>
+              <button class="btn-dark" style="text-align: left; justify-content: flex-start;" onclick="sendAiPrompt('Act as my master academic strategist. Review my current subjects and give me a complete 7-day master study roadmap to score top grades in Engineering Semester Finals.')">
+                🎯 7-Day Top Grades Roadmap
+              </button>
+            </div>
+          </div>
+
+          <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+            <button class="btn-dark" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;" onclick="clearChatHistory()">
+              <i class="fas fa-trash-alt"></i> Clear Chat
+            </button>
+            <span style="font-size: 0.75rem; color: var(--accent-light);">⚡ High-Speed LLM Engine</span>
+          </div>
+        </div>
+
+        <div class="chat-window-card">
+          <!-- Chat Header -->
+          <div class="chat-top-header">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="chat-status-pill">
+                <span class="status-dot-pulse"></span> Ultra Fast AI Active
+              </span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 0.82rem; color: var(--text-muted);">AI Engine:</span>
+              <select id="chatModelSelector" class="model-picker-select" onchange="changeAiModel(this.value)">
+                <option value="gemini-2.0-flash" selected>Gemini 2.0 Flash (Fastest & In-Depth)</option>
+                <option value="gemini-1.5-flash">Gemini 1.5 Flash (Ultra Fast)</option>
+                <option value="gemini-1.5-pro">Gemini 1.5 Pro (Deep Reasoning)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Chat Stream -->
+          <div class="chat-stream-box" id="chatStreamBox">
+            <div class="chat-msg bot">
+              <div class="chat-msg-avatar">AI</div>
+              <div class="chat-msg-bubble">
+                Hello <strong>Lohith</strong>! I am your <strong>StudySmart AI Assistant</strong>, engineered to work with the speed and depth of ChatGPT & Gemini. 🚀<br><br>
+                Ask me any concept, request deep step-by-step mathematical derivations, generate complete code solutions, or ask for exhaustive cram schedules!
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat Input -->
+          <div class="chat-bar-input-wrap">
+            <input type="text" id="chatInput" placeholder="Ask anything: deep explanations, derivations, full code, study schedules..." onkeydown="if(event.key==='Enter') sendAiMessage()">
+            <button class="btn-blue" id="chatSendBtn" onclick="sendAiMessage()" title="Send Prompt"><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 7: PROFILE & SETTINGS -->
+    <section class="page-view" id="page-profile">
+      <div class="section-title-wrap">
+        <h2><i class="fas fa-user-cog" style="color: var(--accent-cyan);"></i> Student Profile</h2>
+        <p>Manage your student identity, linked Google Account, and year of study.</p>
+      </div>
+
+      <div class="profile-main-card">
+        <div class="profile-hero-header">
+          <div class="profile-avatar-container">
+            <div class="profile-avatar-glow"></div>
+            <div class="profile-avatar-big" id="profileAvatarBig">L</div>
+          </div>
+          
+          <div class="profile-hero-info">
+            <h3 class="profile-hero-name" id="profileHeroName">Lohith Naramamidi</h3>
+            <div class="profile-google-badge" id="profileGoogleBadge">
+              <i class="fab fa-google" style="color: #4285F4;"></i>
+              <span id="profileGoogleEmailText">lohithharshu201@gmail.com</span>
+              <span class="verified-tag"><i class="fas fa-check-circle"></i> Google Linked</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-form-body">
+          <h4 style="font-size: 1.1rem; color: #ffffff; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-id-card" style="color: var(--accent-cyan);"></i> Account Info
+          </h4>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+            <div class="form-group-field">
+              <label for="profileUserName"><i class="fas fa-user"></i> Your Name</label>
+              <input type="text" id="profileUserName" value="Lohith" onchange="updateProfile()">
+            </div>
+
+            <div class="form-group-field">
+              <label for="profileYearOfStudy"><i class="fas fa-graduation-cap"></i> Year of Study / Education Grade</label>
+              <select id="profileYearOfStudy" onchange="updateProfile()">
+                <option value="1st Year (Freshman B.Tech)">🎓 1st Year (Freshman)</option>
+                <option value="2nd Year (Sophomore B.Tech)">🎓 2nd Year (Sophomore)</option>
+                <option value="3rd Year (Junior B.Tech)" selected>🎓 3rd Year (Junior B.Tech)</option>
+                <option value="4th Year (Senior B.Tech)">🎓 4th Year (Senior B.Tech)</option>
+                <option value="11th Grade (High School STEM)">🏫 11th Grade (High School STEM)</option>
+                <option value="12th Grade (Senior High School)">🏫 12th Grade (Senior High School)</option>
+                <option value="Medical / Post-Graduate">🩺 Medical / Post-Graduate</option>
+                <option value="Self-Learner / Professional">📖 Self-Learner / Professional</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-top: 1.8rem; display: flex; justify-content: flex-end;">
+            <button class="btn-blue" onclick="updateProfile()">
+              <i class="fas fa-save"></i> Save Profile
+            </button>
+          </div>
+
+          <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h4 style="font-size: 1rem; color: #ffffff;">Account Session</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Sign out from your mandatory Google Account profile.</p>
+            </div>
+            <button class="btn-dark" style="border-color: var(--accent-cyan); color: var(--accent-cyan);" onclick="handleSignOut()">
+              <i class="fas fa-sign-out-alt"></i> Sign Out
+            </button>
+          </div>
+
+          <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h4 style="font-size: 1rem; color: var(--rose);">Reset Demo Data</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Restore sample study sessions, library resources, and subjects to initial default state.</p>
+            </div>
+            <button class="btn-dark" style="border-color: var(--rose); color: var(--rose);" onclick="resetAllData()">
+              <i class="fas fa-undo"></i> Reset All Data
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FLOATING ACTION BUTTON (FAB `+`) -->
+  <button class="fab-quick-add" onclick="openQuickAddModal()" title="Add Study Session" aria-label="Add Study Session">
+    <i class="fas fa-plus"></i>
+  </button>
+
+  <!-- MODAL: QUICK ADD TASK -->
+  <div class="modal-backdrop-layer" id="quickAddModal">
+    <div class="modal-body-card">
+      <div class="modal-head-row">
+        <h3><i class="fas fa-plus-circle"></i> Add Study Session</h3>
+        <button class="modal-close-icon-btn" onclick="closeModal('quickAddModal')"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="form-group-field">
+        <label for="modalTaskSubject"><i class="fas fa-book"></i> Subject (Select or Type Any Custom Subject)</label>
+        <select id="modalTaskSubject" onchange="handleTaskSubjectChange(this.value)"></select>
+        <input type="text" id="modalTaskCustomSubject" placeholder="Type ANY subject without restriction (e.g. 🤖 Robotics, ⚛️ Quantum Physics)..." style="margin-top: 8px; display: none;">
+      </div>
+
+      <div class="form-group-field">
+        <label for="modalTaskTopic">Topic / Chapter Description</label>
+        <input type="text" id="modalTaskTopic" placeholder="e.g. Binary Search Trees, Eigenvalues Practice">
+      </div>
+
+      <div class="form-group-field">
+        <label for="modalTaskTime">Time Slot</label>
+        <input type="text" id="modalTaskTime" placeholder="e.g. 06:00 – 07:00">
+      </div>
+
+      <div class="form-group-field">
+        <label for="modalTaskPriority">Priority</label>
+        <select id="modalTaskPriority">
+          <option value="high">🔥 High Priority</option>
+          <option value="medium" selected>⚡ Medium Priority</option>
+          <option value="low">🌱 Low / Review</option>
+        </select>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 1.5rem;">
+        <button class="btn-dark" onclick="closeModal('quickAddModal')">Cancel</button>
+        <button class="btn-blue" onclick="saveQuickTask()">Save Session</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD NEW SUBJECT -->
+  <div class="modal-backdrop-layer" id="addSubjectModal">
+    <div class="modal-body-card">
+      <div class="modal-head-row">
+        <h3><i class="fas fa-book"></i> Add New Subject</h3>
+        <button class="modal-close-icon-btn" onclick="closeModal('addSubjectModal')"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="form-group-field">
+        <label for="modalEduCategory"><i class="fas fa-graduation-cap"></i> Select Education Level / Branch</label>
+        <select id="modalEduCategory" onchange="loadPresetSubjectsForEdu(this.value)">
+          <option value="engineering" selected>🎓 Engineering & Technology (B.Tech / CSE / ECE)</option>
+          <option value="highschool">🏫 High School STEM (11th & 12th)</option>
+          <option value="secondary">📚 Secondary School (9th & 10th)</option>
+          <option value="medical">🩺 Medical & Life Sciences</option>
+          <option value="commerce">📊 Commerce & Business Administration</option>
+          <option value="arts">🎨 Arts & Humanities</option>
+        </select>
+      </div>
+
+      <div class="form-group-field">
+        <label><i class="fas fa-sparkles" style="color: var(--accent-cyan);"></i> Quick Preset Suggestions (Click to auto-fill)</label>
+        <div id="presetSubjectChips" class="preset-chips-container"></div>
+      </div>
+
+      <div class="form-group-field">
+        <label for="modalNewSubjectName">Subject Name</label>
+        <input type="text" id="modalNewSubjectName" placeholder="e.g. 🤖 Machine Learning, ⚡ Power Electronics">
+      </div>
+
+      <div class="form-group-field">
+        <label for="modalNewSubjectTopics">Key Topics / Chapters (comma separated)</label>
+        <textarea id="modalNewSubjectTopics" rows="3" placeholder="e.g. Linear Regression, Neural Networks, Decision Trees"></textarea>
+      </div>
+
+      <div class="form-group-field">
+        <label for="modalNewSubjectMastery">Initial Mastery Level (%)</label>
+        <input type="number" id="modalNewSubjectMastery" min="0" max="100" value="50">
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 1.5rem;">
+        <button class="btn-dark" onclick="closeModal('addSubjectModal')">Cancel</button>
+        <button class="btn-blue" onclick="saveNewSubject()">Add Subject</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CONFIRM AI REBALANCE & HISTORY RESET -->
+  <div class="modal-backdrop-layer" id="modalConfirmRebalance">
+    <div class="modal-body-card" style="max-width: 520px;">
+      <div class="modal-head-row">
+        <h3 style="color: var(--accent-cyan);"><i class="fas fa-wand-magic-sparkles"></i> AI Re-balance & History Reset</h3>
+        <button class="modal-close-icon-btn" onclick="closeModal('modalConfirmRebalance')"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div style="padding: 0.5rem 0; text-align: center;">
+        <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(56, 189, 248, 0.15); border: 2px solid var(--accent-cyan); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; color: var(--accent-cyan); font-size: 1.8rem; box-shadow: 0 0 25px var(--accent-glow);">
+          <i class="fas fa-history"></i>
+        </div>
+        <h4 style="font-size: 1.2rem; color: #ffffff; margin-bottom: 0.6rem;">Reset Subject History & Rebalance Schedule?</h4>
+        <p style="color: var(--text-sub); font-size: 0.92rem; line-height: 1.6;">
+          Executing <strong>AI Re-balance</strong> will remove and reset every subject's previous study time history, task completion logs, and progress metrics to recalculate a fresh, AI-optimized weekly schedule tailored to your current study goals.
+        </p>
+        <div style="margin-top: 1.2rem; padding: 0.9rem 1rem; background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); border-radius: var(--radius-sm); color: #fda4af; font-size: 0.85rem; text-align: left;">
+          <i class="fas fa-exclamation-triangle"></i> <strong>Confirmation Required:</strong> All past subject study duration logs will be cleared. Do you wish to proceed?
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 1.5rem;">
+        <button class="btn-dark" onclick="closeModal('modalConfirmRebalance')">Cancel</button>
+        <button class="btn-blue" style="background: linear-gradient(135deg, var(--rose) 0%, var(--accent-royal) 100%);" onclick="confirmAndExecuteAiRebalance()">
+          <i class="fas fa-sync-alt"></i> Confirm & Reset History
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD LIBRARY RESOURCE -->
+  <div class="modal-backdrop-layer" id="addResourceModal">
+    <div class="modal-body-card">
+      <div class="modal-head-row">
+        <h3><i class="fas fa-file-upload"></i> Add Library Resource</h3>
+        <button class="modal-close-icon-btn" onclick="closeModal('addResourceModal')"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="form-group-field">
+        <label for="modalResourceTitle">Resource Title</label>
+        <input type="text" id="modalResourceTitle" placeholder="e.g. Fourier Transform Formula Cheat Sheet">
+      </div>
+
+      <div class="form-group-field">
+        <label for="modalResourceSubject">Associated Subject</label>
+        <select id="modalResourceSubject"></select>
+      </div>
+
+      <div class="form-group-field">
+        <label for="modalResourceType">Category Type</label>
+        <select id="modalResourceType">
+          <option value="note">📄 Lecture Notes</option>
+          <option value="cheatsheet" selected>⚡ Cheat Sheet</option>
+          <option value="book">📚 Reference Book</option>
+          <option value="code">💻 Code Repository</option>
+        </select>
+      </div>
+
+      <div class="form-group-field">
+        <label for="modalResourceDesc">Description / Key Notes</label>
+        <textarea id="modalResourceDesc" rows="3" placeholder="High-yield derivation notes and active recall pointers..."></textarea>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 1.5rem;">
+        <button class="btn-dark" onclick="closeModal('addResourceModal')">Cancel</button>
+        <button class="btn-blue" onclick="saveNewResource()">Add to Library</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST SHELF -->
+  <div class="toast-shelf" id="toastShelf"></div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div class="brand-icon-box" style="width: 32px; height: 32px; font-size: 0.9rem;">
+          <i class="fas fa-graduation-cap" style="color: var(--accent-cyan);"></i>
+        </div>
+        <span style="font-weight: 700; color: #ffffff;">Study<span style="color: var(--accent-cyan);">Smart</span></span>
+        <span class="footer-text">· AI-Powered Study Planner</span>
+      </div>
+      <div class="footer-text">
+        © 2026 StudySmart. Powered by LOHITH NARAMAMIDI
+      </div>
+    </div>
+  </footer>
+
+  <!-- Master JavaScript -->
+  <script>
+(function () {
+  'use strict';
+
+  const GEMINI_API_KEY_DEFAULT = "AQ.Ab8RN6JRyrCjK90UffGlZAGZ0KdzwW9wrd4D05BPXMceEbr7KA";
+
+  const DEFAULT_STUDY_DATA = {
+    user: {
+      name: "Lohith",
+      targetExam: "Engineering Semester Finals",
+      dailyHoursGoal: 5,
+      streakDays: 14,
+      completedToday: 2,
+      apiKey: GEMINI_API_KEY_DEFAULT,
+      selectedModel: "gemini-2.0-flash"
+    },
+    schedule: [
+      { id: 1, time: "08:00 – 09:30", subject: "📐 Engineering Mathematics", topic: "Eigenvalues & Differential Equations", priority: "high", completed: false },
+      { id: 2, time: "10:45 – 11:45", subject: "💻 Data Structures & Algorithms", topic: "Binary Search Trees & AVL Traversals", priority: "high", completed: false },
+      { id: 3, time: "02:00 – 03:00", subject: "⚗️ Applied Chemistry", topic: "UV & IR Spectroscopy Analysis", priority: "medium", completed: false },
+      { id: 4, time: "04:30 – 05:30", subject: "🐍 Python Programming", topic: "Decorators, Generators & NumPy Math", priority: "low", completed: false },
+      { id: 5, time: "07:30 – 08:30", subject: "📝 Active Recall & Revision", topic: "Day-3 Spaced Repetition Formula Review", priority: "medium", completed: false }
+    ],
+    subjects: [
+      {
+        id: "math",
+        name: "📐 Engineering Mathematics",
+        mastery: 78,
+        topics: [
+          { name: "Linear Algebra & Matrices", done: true },
+          { name: "Eigenvalues & Diagonalization", done: true },
+          { name: "First Order Differential Equations", done: true },
+          { name: "Fourier & Laplace Transforms", done: false },
+          { name: "Numerical Methods", done: true }
+        ]
+      },
+      {
+        id: "dsa",
+        name: "💻 Data Structures & Algorithms",
+        mastery: 70,
+        topics: [
+          { name: "Arrays & Strings", done: true },
+          { name: "Linked Lists & Queues", done: true },
+          { name: "Binary Search Trees & AVL", done: true },
+          { name: "Graph BFS & DFS Algorithms", done: false },
+          { name: "Dynamic Programming Memoization", done: false }
+        ]
+      },
+      {
+        id: "python",
+        name: "🐍 Python Programming",
+        mastery: 88,
+        topics: [
+          { name: "Data Structures & Collections", done: true },
+          { name: "Functions & Lambdas", done: true },
+          { name: "OOP & Polymorphism", done: true },
+          { name: "Decorators & Generators", done: true },
+          { name: "NumPy & Array Operations", done: false }
+        ]
+      },
+      {
+        id: "chem",
+        name: "⚗️ Applied Chemistry",
+        mastery: 65,
+        topics: [
+          { name: "Chemical Kinetics & Rates", done: true },
+          { name: "Thermodynamics & Enthalpy", done: true },
+          { name: "UV & IR Spectroscopy", done: false },
+          { name: "Polymers & Nanomaterials", done: false }
+        ]
+      }
+    ],
+    library: [
+      {
+        id: 1,
+        title: "Linear Algebra & Matrix Derivations",
+        subject: "📐 Engineering Mathematics",
+        type: "note",
+        desc: "Comprehensive lecture notes on characteristic polynomials, eigenvalues, and Cayley-Hamilton theorem.",
+        icon: "fas fa-file-alt"
+      },
+      {
+        id: 2,
+        title: "AVL Trees & BST Rotations Visual Sheet",
+        subject: "💻 Data Structures & Algorithms",
+        type: "cheatsheet",
+        desc: "High-yield diagrams of Left-Left, Right-Right, and double rotations with time complexity tables.",
+        icon: "fas fa-bolt"
+      },
+      {
+        id: 3,
+        title: "Spectroscopy IR/UV Peak Identification Chart",
+        subject: "⚗️ Applied Chemistry",
+        type: "cheatsheet",
+        desc: "Functional group frequency tables for quick organic identification and exam active recall.",
+        icon: "fas fa-vial"
+      },
+      {
+        id: 4,
+        title: "Python Decorators & NumPy Matrix Ops",
+        subject: "🐍 Python Programming",
+        type: "code",
+        desc: "Executable code patterns for closures, custom wrappers, and multidimensional tensor slicing.",
+        icon: "fas fa-code"
+      },
+      {
+        id: 5,
+        title: "Advanced Engineering Mathematics Handbook",
+        subject: "📐 Engineering Mathematics",
+        type: "book",
+        desc: "Standard university textbook reference covering ODEs, vector calculus, and Fourier series.",
+        icon: "fas fa-book"
+      }
+    ]
+  };
+
+  let studyData = null;
+  let chatHistory = [];
+  let isAiGenerating = false;
+  let currentLibFilter = 'all';
+
+  const EDU_PRESETS = {
+    engineering: [
+      { name: "📐 Engineering Mathematics", topics: "Eigenvalues, ODEs, Laplace Transforms, Vector Calculus, Fourier Series" },
+      { name: "💻 Data Structures & Algorithms", topics: "Arrays, Linked Lists, BST & AVL Trees, Graphs BFS/DFS, Dynamic Programming" },
+      { name: "🐍 Python & AI Programming", topics: "Data Structures, OOP, NumPy, Pandas, Scikit-learn, Neural Networks" },
+      { name: "⚡ Operating Systems & Networks", topics: "Process Scheduling, Virtual Memory, TCP/IP, Deadlocks, Threading" },
+      { name: "🤖 Machine Learning & Data Science", topics: "Linear Regression, Decision Trees, CNNs, Transformers, Model Tuning" },
+      { name: "⚗️ Applied Chemistry & Materials", topics: "Chemical Kinetics, UV-IR Spectroscopy, Polymer Chemistry, Thermodynamics" }
+    ],
+    highschool: [
+      { name: "⚛️ Physics (11th/12th)", topics: "Kinematics, Newton Laws, Electrostatics, Optics, Quantum Mechanics" },
+      { name: "🧪 Organic & Physical Chemistry", topics: "Chemical Bonding, Thermodynamics, Hydrocarbons, Electrochemistry, Kinetics" },
+      { name: "📐 Higher Mathematics", topics: "Calculus, Derivatives, Integrals, Probability, Vectors & 3D Geometry" },
+      { name: "🧬 Biology & Genetics", topics: "Cellular Structure, DNA & RNA, Evolution, Human Physiology, Plant Anatomy" },
+      { name: "💻 Computer Science (Python)", topics: "Python Syntax, Data Structures, SQL Databases, Networking Basics" }
+    ],
+    secondary: [
+      { name: "📐 High School Mathematics", topics: "Algebra, Quadratic Equations, Trigonometry, Coordinate Geometry, Statistics" },
+      { name: "🔬 Science (Physics, Chem, Bio)", topics: "Motion & Energy, Periodic Table, Cell Biology, Light & Sound, Electricity" },
+      { name: "📖 English Language & Literature", topics: "Grammar, Reading Comprehension, Essay Writing, Classic Novel Analysis" },
+      { name: "🌍 Social Studies & History", topics: "World History, Civics & Constitution, Geography, Economics Fundamentals" }
+    ],
+    medical: [
+      { name: "🫀 Human Anatomy & Histology", topics: "Cardiovascular System, Neuroanatomy, Musculoskeletal Structure, Histology Slides" },
+      { name: "🧪 Medical Biochemistry", topics: "Metabolic Pathways, Enzymes, Amino Acids, Clinical Diagnostics, Molecular Biology" },
+      { name: "🧬 General Physiology", topics: "Neurophysiology, Renal Function, Endocrine System, Blood & Circulation" },
+      { name: "💊 Pharmacology Basics", topics: "Drug Mechanisms, Pharmacokinetics, Antimicrobials, Autonomic Drugs" }
+    ],
+    commerce: [
+      { name: "📊 Financial Accounting", topics: "Balance Sheets, Income Statements, Ledger Entries, Depreciation, Cash Flow" },
+      { name: "📈 Micro & Macro Economics", topics: "Supply & Demand, Market Structures, Inflation, GDP & Monetary Policy" },
+      { name: "💼 Business Management", topics: "Organizational Behavior, Marketing Strategy, Corporate Governance, HR Operations" },
+      { name: "⚖️ Corporate Law & Ethics", topics: "Contract Law, Company Regulations, Intellectual Property, Business Ethics" }
+    ],
+    arts: [
+      { name: "📜 World History & Civilizations", topics: "Ancient Empires, Industrial Revolution, Cold War, Modern Geopolitics" },
+      { name: "🧠 General Psychology", topics: "Cognitive Neuroscience, Behavioral Psychology, Memory & Learning, Mental Health" },
+      { name: "📚 Literature & Critical Theory", topics: "Poetry Analysis, Modernist Novels, Literary Criticism, Creative Writing" },
+      { name: "🎨 Art History & Aesthetics", topics: "Renaissance Art, Impressionism, Modern Architecture, Visual Design" }
+    ]
+  };
+
+  window.loadPresetSubjectsForEdu = function (cat) {
+    const container = document.getElementById('presetSubjectChips');
+    if (!container) return;
+    container.innerHTML = '';
+    const presets = EDU_PRESETS[cat] || EDU_PRESETS.engineering;
+    presets.forEach(p => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'preset-chip-btn';
+      chip.innerText = p.name;
+      chip.onclick = () => {
+        document.getElementById('modalNewSubjectName').value = p.name;
+        document.getElementById('modalNewSubjectTopics').value = p.topics;
+        document.getElementById('modalNewSubjectMastery').value = '50';
+        const allChips = container.querySelectorAll('.preset-chip-btn');
+        allChips.forEach(c => c.classList.remove('selected'));
+        chip.classList.add('selected');
+        showToast(`Loaded preset: "${p.name}"`, 'info');
+      };
+      container.appendChild(chip);
+    });
+  };
+
+  function loadData() {
+    const saved = localStorage.getItem("studysmart_blue_v5");
+    if (saved) {
+      try {
+        studyData = JSON.parse(saved);
+        if (!studyData.library) {
+          studyData.library = DEFAULT_STUDY_DATA.library;
+        }
+        if (!studyData.user.apiKey) {
+          studyData.user.apiKey = GEMINI_API_KEY_DEFAULT;
+        }
+        if (!studyData.user.selectedModel) {
+          studyData.user.selectedModel = "gemini-2.0-flash";
+        }
+        if (!studyData.user.googleEmail) {
+          studyData.user.googleEmail = "lohithharshu201@gmail.com";
+        }
+        if (!studyData.user.yearOfStudy) {
+          studyData.user.yearOfStudy = "3rd Year (Junior B.Tech)";
+        }
+      } catch (e) {
+        studyData = JSON.parse(JSON.stringify(DEFAULT_STUDY_DATA));
+      }
+    } else {
+      studyData = JSON.parse(JSON.stringify(DEFAULT_STUDY_DATA));
+      studyData.user.googleEmail = "lohithharshu201@gmail.com";
+      studyData.user.yearOfStudy = "3rd Year (Junior B.Tech)";
+      saveData();
+    }
+
+    const modelSelect = document.getElementById('chatModelSelector');
+    if (modelSelect) modelSelect.value = studyData.user.selectedModel || "gemini-2.0-flash";
+    
+    renderProfile();
+    populateSubjectDropdowns();
+  }
+
+  function renderProfile() {
+    if (!studyData || !studyData.user) return;
+    const name = studyData.user.name || "Lohith Naramamidi";
+    const year = studyData.user.yearOfStudy || "3rd Year (Junior B.Tech)";
+    const email = studyData.user.googleEmail || "lohithharshu201@gmail.com";
+
+    const nameInput = document.getElementById('profileUserName');
+    if (nameInput) nameInput.value = name;
+
+    const yearSelect = document.getElementById('profileYearOfStudy');
+    if (yearSelect) yearSelect.value = year;
+
+    const heroName = document.getElementById('profileHeroName');
+    if (heroName) heroName.innerText = name;
+
+    const emailText = document.getElementById('profileGoogleEmailText');
+    if (emailText) emailText.innerText = email;
+
+    const avatarBig = document.getElementById('profileAvatarBig');
+    if (avatarBig) avatarBig.innerText = name.charAt(0).toUpperCase();
+
+    updateNavbarUser(name);
+  }
+
+  function saveData() {
+    localStorage.setItem("studysmart_blue_v5", JSON.stringify(studyData));
+  }
+
+  /* ==========================================================================
+     AUTHENTICATION & LOGIN CONTROLLER
+     ========================================================================== */
+  let currentAuthTab = 'signin';
+
+  function checkAuthStatus() {
+    const authUser = localStorage.getItem("studysmart_auth_user");
+    const authOverlay = document.getElementById('appAuthOverlay');
+    if (!authUser) {
+      if (authOverlay) authOverlay.classList.add('active');
+    } else {
+      try {
+        const u = JSON.parse(authUser);
+        if (u && u.name) {
+          studyData.user.name = u.name;
+          updateNavbarUser(u.name);
+        }
+      } catch (e) {}
+    }
+  }
+
+  function updateNavbarUser(name) {
+    const nameEl = document.getElementById('navUserName');
+    const avatarEl = document.getElementById('navUserAvatar');
+    if (nameEl) nameEl.innerText = name || 'Student';
+    if (avatarEl) avatarEl.innerText = (name || 'S').charAt(0).toUpperCase();
+  }
+
+  window.switchAuthTab = function (tab) {
+    currentAuthTab = tab;
+    const btnIn = document.getElementById('tabBtnSignIn');
+    const btnUp = document.getElementById('tabBtnSignUp');
+    const nameGroup = document.getElementById('authNameGroup');
+    const submitText = document.getElementById('authSubmitBtnText');
+    const rememberRow = document.getElementById('authRememberRow');
+
+    if (tab === 'signup') {
+      if (btnUp) btnUp.classList.add('active');
+      if (btnIn) btnIn.classList.remove('active');
+      if (nameGroup) nameGroup.style.display = 'block';
+      if (submitText) submitText.innerText = 'Create Account & Start';
+      if (rememberRow) rememberRow.style.display = 'none';
+    } else {
+      if (btnIn) btnIn.classList.add('active');
+      if (btnUp) btnUp.classList.remove('active');
+      if (nameGroup) nameGroup.style.display = 'none';
+      if (submitText) submitText.innerText = 'Sign In to Dashboard';
+      if (rememberRow) rememberRow.style.display = 'flex';
+    }
+  };
+
+  window.togglePasswordVisibility = function (fieldId, btn) {
+    const input = document.getElementById(fieldId);
+    if (!input) return;
+    if (input.type === 'password') {
+      input.type = 'text';
+      btn.innerHTML = '<i class="far fa-eye-slash"></i>';
+    } else {
+      input.type = 'password';
+      btn.innerHTML = '<i class="far fa-eye"></i>';
+    }
+  };
+
+  window.handleGoogleSignIn = function () {
+    const emailInput = document.getElementById('googleAuthEmailInput');
+    const nameInput = document.getElementById('googleAuthNameInput');
+
+    const email = emailInput ? emailInput.value.trim() : "lohithharshu201@gmail.com";
+    const name = nameInput && nameInput.value.trim() ? nameInput.value.trim() : "Lohith Naramamidi";
+
+    if (!email || !email.includes('@')) {
+      showToast('Please enter a valid Google email address (e.g. user@gmail.com)', 'error');
+      return;
+    }
+
+    const btn = document.getElementById('btnGoogleAuth');
+    const googleText = document.getElementById('googleBtnText');
+    if (btn) btn.disabled = true;
+    if (googleText) googleText.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Linking Google Account...';
+
+    setTimeout(() => {
+      const user = {
+        name: name,
+        email: email,
+        provider: "google",
+        signedInAt: new Date().toISOString()
+      };
+      studyData.user.name = name;
+      studyData.user.googleEmail = email;
+      studyData.user.googleLinked = true;
+      saveData();
+
+      localStorage.setItem("studysmart_auth_user", JSON.stringify(user));
+      renderProfile();
+
+      const authOverlay = document.getElementById('appAuthOverlay');
+      if (authOverlay) authOverlay.classList.remove('active');
+
+      if (btn) btn.disabled = false;
+      if (googleText) googleText.innerText = 'Link Google Account & Sign In';
+
+      showToast(`✨ Google Account Linked: ${email}`, 'success');
+      playAudioBeep(659.25, 0.2);
+      navigateTo('dashboard');
+    }, 600);
+  };
+
+  window.handleGuestDemoLogin = function () {
+    const user = {
+      name: "Lohith Naramamidi",
+      email: "lohithharshu201@gmail.com",
+      provider: "google",
+      signedInAt: new Date().toISOString()
+    };
+    studyData.user.name = "Lohith Naramamidi";
+    studyData.user.googleEmail = "lohithharshu201@gmail.com";
+    studyData.user.googleLinked = true;
+    saveData();
+
+    localStorage.setItem("studysmart_auth_user", JSON.stringify(user));
+    renderProfile();
+
+    const authOverlay = document.getElementById('appAuthOverlay');
+    if (authOverlay) authOverlay.classList.remove('active');
+
+    showToast('⚡ Signed in via Google as Lohith (lohithharshu201@gmail.com)', 'success');
+    playAudioBeep(520, 0.15);
+    navigateTo('dashboard');
+  };
+
+  window.handleSignOut = function () {
+    localStorage.removeItem("studysmart_auth_user");
+    const authOverlay = document.getElementById('appAuthOverlay');
+    if (authOverlay) authOverlay.classList.add('active');
+    showToast('Signed out of StudySmart', 'info');
+  };
+
+  window.handleForgotPassword = function (e) {
+    if (e) e.preventDefault();
+    const email = document.getElementById('authUserEmail')?.value.trim();
+    if (!email) {
+      showToast('Enter your email address above to reset password', 'info');
+    } else {
+      showToast(`Password reset link sent to ${email}`, 'success');
+    }
+  };
+
+  function initSplashIntro() {
+    const overlay = document.getElementById('appSplashOverlay');
+    if (!overlay) {
+      checkAuthStatus();
+      return;
+    }
+
+    function dismiss() {
+      if (overlay.classList.contains('splash-hidden')) return;
+      overlay.classList.add('splash-hidden');
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        if (overlay.parentNode) {
+          overlay.parentNode.removeChild(overlay);
+        }
+        checkAuthStatus();
+      }, 500);
+    }
+
+    setTimeout(() => {
+      dismiss();
+      playAudioBeep(659.25, 0.15);
+    }, 2400);
+
+    overlay.addEventListener('click', dismiss);
+    window.addEventListener('keydown', dismiss, { once: true });
+  }
+
+  window.navigateTo = function (pageName) {
+    const navLinks = document.querySelectorAll('.nav-item-link');
+    navLinks.forEach(link => {
+      if (link.getAttribute('data-page') === pageName) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    const pages = document.querySelectorAll('.page-view');
+    pages.forEach(p => {
+      if (p.id === `page-${pageName}`) {
+        p.classList.add('active');
+      } else {
+        p.classList.remove('active');
+      }
+    });
+
+    const menu = document.getElementById('navbarLinksMenu');
+    if (menu) menu.classList.remove('mobile-open');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (pageName === 'dashboard') {
+      renderDashboard();
+    } else if (pageName === 'planner') {
+      renderPlannerView();
+    } else if (pageName === 'library') {
+      renderLibraryView();
+    } else if (pageName === 'analytics') {
+      setTimeout(renderAnalyticsCharts, 120);
+    }
+
+    playAudioBeep(440, 0.05);
+  };
+
+  window.toggleMobileNav = function () {
+    const menu = document.getElementById('navbarLinksMenu');
+    if (menu) menu.classList.toggle('mobile-open');
+  };
+
+  window.handleTaskSubjectChange = function (val) {
+    const customInput = document.getElementById('modalTaskCustomSubject');
+    if (!customInput) return;
+    if (val === '__custom__') {
+      customInput.style.display = 'block';
+      customInput.focus();
+    } else {
+      customInput.style.display = 'none';
+    }
+  };
+
+  function populateSubjectDropdowns() {
+    const modalSelect = document.getElementById('modalTaskSubject');
+    const libSelect = document.getElementById('modalResourceSubject');
+    const customInput = document.getElementById('modalTaskCustomSubject');
+    
+    if (modalSelect && studyData) {
+      modalSelect.innerHTML = '';
+      studyData.subjects.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.name;
+        opt.innerText = s.name;
+        modalSelect.appendChild(opt);
+      });
+      const extraOpt = document.createElement('option');
+      extraOpt.value = "📝 Active Recall & Revision";
+      extraOpt.innerText = "📝 Active Recall & Revision";
+      modalSelect.appendChild(extraOpt);
+
+      const customOpt = document.createElement('option');
+      customOpt.value = "__custom__";
+      customOpt.innerText = "➕ Type custom subject name...";
+      modalSelect.appendChild(customOpt);
+
+      if (customInput) customInput.style.display = 'none';
+    }
+
+    if (libSelect && studyData) {
+      libSelect.innerHTML = '';
+      studyData.subjects.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.name;
+        opt.innerText = s.name;
+        libSelect.appendChild(opt);
+      });
+    }
+  }
+
+  /* SUBJECT MANAGEMENT */
+  window.openAddSubjectModal = function () {
+    document.getElementById('modalNewSubjectName').value = '';
+    document.getElementById('modalNewSubjectTopics').value = '';
+    document.getElementById('modalNewSubjectMastery').value = '50';
+    loadPresetSubjectsForEdu('engineering');
+    openModal('addSubjectModal');
+  };
+
+  window.saveNewSubject = function () {
+    const name = document.getElementById('modalNewSubjectName').value.trim();
+    if (!name) {
+      showToast('Please enter a subject name', 'error');
+      return;
+    }
+
+    const rawTopics = document.getElementById('modalNewSubjectTopics').value.trim();
+    const mastery = parseInt(document.getElementById('modalNewSubjectMastery').value) || 50;
+
+    let topics = [];
+    if (rawTopics) {
+      topics = rawTopics.split(',').map(t => ({ name: t.trim(), done: false })).filter(t => t.name.length > 0);
+    } else {
+      topics = [
+        { name: "Fundamentals & Core Theory", done: true },
+        { name: "Exam Derivations & Practice", done: false },
+        { name: "Spaced Repetition Review", done: false }
+      ];
+    }
+
+    const newSubj = {
+      id: 'sub_' + Date.now(),
+      name: name.includes(' ') && !name.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]/) ? `📚 ${name}` : name,
+      mastery: Math.min(100, Math.max(0, mastery)),
+      topics: topics
+    };
+
+    studyData.subjects.push(newSubj);
+    saveData();
+    closeModal('addSubjectModal');
+    populateSubjectDropdowns();
+    renderDashboard();
+    showToast(`Subject "${newSubj.name}" added successfully!`, 'success');
+    playAudioBeep(659.25, 0.15);
+  };
+
+  window.deleteSubject = function (subjId) {
+    const subj = studyData.subjects.find(s => s.id === subjId);
+    const name = subj ? subj.name : 'this subject';
+    
+    studyData.subjects = studyData.subjects.filter(s => s.id !== subjId);
+    saveData();
+    populateSubjectDropdowns();
+    renderDashboard();
+    showToast(`Subject "${name}" removed.`, 'info');
+  };
+
+  function renderDashboard() {
+    if (!studyData) return;
+
+    const pending = studyData.schedule.filter(s => !s.completed).length;
+    const completed = studyData.schedule.filter(s => s.completed).length;
+
+    let totalTopics = 0;
+    let doneTopics = 0;
+    studyData.subjects.forEach(s => {
+      s.topics.forEach(t => {
+        totalTopics++;
+        if (t.done) doneTopics++;
+      });
+    });
+    const avgMastery = totalTopics > 0 ? Math.round((doneTopics / totalTopics) * 100) : 75;
+
+    const taskCountEl = document.getElementById('dashTaskCount');
+    if (taskCountEl) taskCountEl.innerText = pending;
+    const taskSubEl = document.getElementById('dashTaskSub');
+    if (taskSubEl) taskSubEl.innerText = `${completed} completed today`;
+
+    const streakEl = document.getElementById('dashStreakCount');
+    if (streakEl) streakEl.innerText = `${studyData.user.streakDays} Days`;
+
+    const masteryEl = document.getElementById('dashMasteryRate');
+    if (masteryEl) masteryEl.innerText = `${avgMastery}%`;
+
+    const list = document.getElementById('dashScheduleList');
+    if (list) {
+      list.innerHTML = '';
+      studyData.schedule.forEach(item => {
+        const div = document.createElement('div');
+        div.className = `dash-schedule-item ${item.completed ? 'done' : ''}`;
+        div.innerHTML = `
+          <div class="sched-left">
+            <span class="sched-time"><i class="far fa-clock"></i> ${item.time}</span>
+            <div class="sched-info">
+              <span class="sched-sub">${item.subject}</span>
+              <span class="sched-topic">${item.topic}</span>
+            </div>
+          </div>
+          <div class="sched-actions">
+            <button class="action-round-btn" title="Ask AI Assistant" onclick="askCoachAbout('${escapeQuotes(item.subject)}', '${escapeQuotes(item.topic)}')">
+              <i class="fas fa-robot"></i>
+            </button>
+            <button class="action-round-btn" title="Mark Complete" onclick="toggleTaskDone(${item.id})">
+              <i class="fas fa-check"></i>
+            </button>
+            <button class="action-round-btn danger" title="Delete Session" onclick="deleteScheduleTask(${item.id})">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    const subjGrid = document.getElementById('dashSubjectGrid');
+    if (subjGrid) {
+      subjGrid.innerHTML = '';
+      if (studyData.subjects.length === 0) {
+        subjGrid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-muted);">
+            <i class="fas fa-book-open" style="font-size: 2rem; color: var(--accent-cyan); margin-bottom: 10px;"></i>
+            <p>No subjects added yet. Click <strong>+ Add Subject</strong> to build your curriculum!</p>
+          </div>
+        `;
+      } else {
+        studyData.subjects.forEach(s => {
+          const d = s.topics.filter(t => t.done).length;
+          const tot = s.topics.length || 1;
+          const pct = Math.round((d / tot) * 100);
+
+          const card = document.createElement('div');
+          card.className = 'subj-box';
+          card.innerHTML = `
+            <div class="subj-head">
+              <span class="subj-title">${s.name}</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="blue-badge">${pct}% Mastery</span>
+                <button class="action-round-btn danger" style="width: 28px; height: 28px; font-size: 0.75rem;" title="Remove Subject" onclick="deleteSubject('${s.id}')">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+            <div class="progress-bar-rail">
+              <div class="progress-bar-fill" style="width: ${pct}%;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); margin-top: 6px;">
+              <span>${d} of ${tot} topics done</span>
+              <span style="color: var(--accent-cyan); cursor: pointer;" onclick="askCoachAbout('${escapeQuotes(s.name)}', 'Key Exam Concepts')">Ask AI →</span>
+            </div>
+          `;
+          subjGrid.appendChild(card);
+        });
+      }
+    }
+  }
+
+  function escapeQuotes(str) {
+    return (str || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+  }
+
+  window.askCoachAbout = function (subject, topic) {
+    navigateTo('coach');
+    setTimeout(() => {
+      sendAiPrompt(`Please provide an in-depth, step-by-step master guide and comprehensive exam derivation roadmap for ${subject}: ${topic}.`);
+    }, 250);
+  };
+
+  window.toggleTaskDone = function (id) {
+    const task = studyData.schedule.find(s => s.id === id);
+    if (task) {
+      task.completed = !task.completed;
+      saveData();
+      renderDashboard();
+      renderPlannerView();
+      if (task.completed) {
+        showToast(`Completed "${task.topic}"!`, 'success');
+        playAudioBeep(659.25, 0.15);
+      }
+    }
+  };
+
+  window.deleteScheduleTask = function (id) {
+    studyData.schedule = studyData.schedule.filter(s => s.id !== id);
+    saveData();
+    renderDashboard();
+    renderPlannerView();
+    showToast('Session removed from timetable', 'info');
+  };
+
+  window.openConfirmRebalanceModal = function () {
+    openModal('modalConfirmRebalance');
+  };
+
+  window.confirmAndExecuteAiRebalance = function () {
+    closeModal('modalConfirmRebalance');
+
+    // Reset/clear previous subject time history and topic progress
+    if (studyData.subjects) {
+      studyData.subjects.forEach(s => {
+        s.topics.forEach(t => t.done = false);
+        s.mastery = Math.floor(Math.random() * 20) + 40;
+      });
+    }
+
+    const firstSubj = studyData.subjects[0]?.name || "📐 Engineering Mathematics";
+    const secondSubj = studyData.subjects[1]?.name || "💻 Data Structures & Algorithms";
+    const thirdSubj = studyData.subjects[2]?.name || "⚗️ Applied Chemistry";
+
+    studyData.schedule = [
+      { id: 1, time: "08:00 – 09:15", subject: firstSubj, topic: "Core Theory & High-Yield Derivations", priority: "high", completed: false },
+      { id: 2, time: "10:30 – 11:30", subject: secondSubj, topic: "Problem Solving & Complex Logic", priority: "high", completed: false },
+      { id: 3, time: "02:00 – 03:00", subject: thirdSubj, topic: "Active Recall & Conceptual Quiz", priority: "medium", completed: false },
+      { id: 4, time: "04:30 – 05:30", subject: firstSubj, topic: "Previous Year Exam Practice", priority: "low", completed: false },
+      { id: 5, time: "07:30 – 08:30", subject: "📝 Active Recall & Revision", topic: "Ebbinghaus Spaced Review", priority: "medium", completed: false }
+    ];
+
+    saveData();
+    renderDashboard();
+    renderPlannerView();
+    showToast('✨ Previous subject time history cleared & AI schedule rebalanced!', 'success');
+    playAudioBeep(659.25, 0.22);
+  };
+
+  window.renderPlannerView = function () {
+    const weeklyGrid = document.getElementById('weeklyCalendarGrid');
+    if (weeklyGrid) {
+      weeklyGrid.innerHTML = '';
+      const days = [
+        { name: 'Mon', date: 'Aug 10', tasks: ['Math: Matrices', 'Python: OOP'] },
+        { name: 'Tue', date: 'Aug 11', tasks: ['DSA: BST Search', 'Chem: Kinetics'] },
+        { name: 'Wed', date: 'Aug 12', today: true, tasks: ['Math: Eigenvalues', 'DSA: AVL Trees', 'Chem: IR Spectra'] },
+        { name: 'Thu', date: 'Aug 13', tasks: ['Python: Decorators', 'Math: ODEs'] },
+        { name: 'Fri', date: 'Aug 14', tasks: ['DSA: Graph BFS', 'Chem: Polymers'] },
+        { name: 'Sat', date: 'Aug 15', tasks: ['Mock Exam: Math', 'Revision Radar'] },
+        { name: 'Sun', date: 'Aug 16', tasks: ['Weekly Review', 'Cheat Sheet Recaps'] }
+      ];
+
+      days.forEach(d => {
+        const col = document.createElement('div');
+        col.className = `cal-day-col ${d.today ? 'today' : ''}`;
+        let pills = '';
+        d.tasks.forEach(t => {
+          pills += `<div class="cal-event-pill" onclick="askCoachAbout('${escapeQuotes(t)}', 'Exam Preparation')">${t}</div>`;
+        });
+
+        col.innerHTML = `
+          <div class="cal-day-name">${d.name}</div>
+          <div class="cal-day-num">${d.date}</div>
+          ${pills}
+        `;
+        weeklyGrid.appendChild(col);
+      });
+    }
+
+    const plannerList = document.getElementById('plannerScheduleListFull');
+    if (plannerList) {
+      plannerList.innerHTML = '';
+      studyData.schedule.forEach(item => {
+        const div = document.createElement('div');
+        div.className = `dash-schedule-item ${item.completed ? 'done' : ''}`;
+        div.innerHTML = `
+          <div class="sched-left">
+            <span class="sched-time"><i class="far fa-clock"></i> ${item.time}</span>
+            <div class="sched-info">
+              <span class="sched-sub">${item.subject}</span>
+              <span class="sched-topic">${item.topic}</span>
+            </div>
+          </div>
+          <div class="sched-actions">
+            <button class="action-round-btn" onclick="askCoachAbout('${escapeQuotes(item.subject)}', '${escapeQuotes(item.topic)}')">
+              <i class="fas fa-robot"></i>
+            </button>
+            <button class="action-round-btn" onclick="toggleTaskDone(${item.id})">
+              <i class="fas fa-check"></i>
+            </button>
+            <button class="action-round-btn danger" onclick="deleteScheduleTask(${item.id})">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        `;
+        plannerList.appendChild(div);
+      });
+    }
+  };
+
+  /* STUDY LIBRARY CONTROLLER */
+  function renderLibraryView(filter = currentLibFilter, searchQuery = '') {
+    const grid = document.getElementById('libraryCardsGrid');
+    if (!grid || !studyData) return;
+
+    grid.innerHTML = '';
+    let items = studyData.library || [];
+
+    if (filter !== 'all') {
+      items = items.filter(i => i.type === filter);
+    }
+
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      items = items.filter(i => 
+        i.title.toLowerCase().includes(q) || 
+        i.subject.toLowerCase().includes(q) || 
+        i.desc.toLowerCase().includes(q)
+      );
+    }
+
+    if (items.length === 0) {
+      grid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted);">
+          <i class="fas fa-folder-open" style="font-size: 2.5rem; color: var(--accent-cyan); margin-bottom: 12px;"></i>
+          <h3 style="color: #ffffff; margin-bottom: 6px;">No Study Materials Found</h3>
+          <p>Add your first study note, formula sheet, or reference book!</p>
+          <button class="btn-blue" style="margin-top: 1rem;" onclick="openAddResourceModal()"><i class="fas fa-plus"></i> Add Material</button>
+        </div>
+      `;
+      return;
+    }
+
+    items.forEach(res => {
+      const typeIcons = {
+        note: 'fas fa-file-alt',
+        cheatsheet: 'fas fa-bolt',
+        book: 'fas fa-book',
+        code: 'fas fa-code'
+      };
+      const typeNames = {
+        note: 'Note',
+        cheatsheet: 'Cheat Sheet',
+        book: 'Book',
+        code: 'Code'
+      };
+
+      const card = document.createElement('div');
+      card.className = 'lib-card';
+      card.innerHTML = `
+        <div class="lib-card-top">
+          <div class="lib-icon-badge"><i class="${typeIcons[res.type] || 'fas fa-book'}"></i></div>
+          <span class="lib-type-tag">${typeNames[res.type] || res.type}</span>
+        </div>
+        <h4>${res.title}</h4>
+        <div class="lib-card-subj">${res.subject}</div>
+        <p>${res.desc}</p>
+        <div class="lib-card-actions">
+          <button class="btn-dark" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;" onclick="askCoachAbout('${escapeQuotes(res.subject)}', '${escapeQuotes(res.title)}')">
+            <i class="fas fa-robot"></i> Ask AI
+          </button>
+          <div style="display: flex; gap: 8px;">
+            <button class="action-round-btn" title="Open Resource" onclick="openResourceViewer('${escapeQuotes(res.title)}')">
+              <i class="fas fa-external-link-alt"></i>
+            </button>
+            <button class="action-round-btn danger" title="Delete Resource" onclick="deleteLibraryResource(${res.id})">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  window.filterLibrary = function (type, btn) {
+    currentLibFilter = type;
+    const pills = document.querySelectorAll('.lib-filter-pill');
+    pills.forEach(p => p.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+
+    const searchVal = document.getElementById('libSearchInput')?.value || '';
+    renderLibraryView(type, searchVal);
+  };
+
+  window.searchLibrary = function (query) {
+    renderLibraryView(currentLibFilter, query);
+  };
+
+  window.openAddResourceModal = function () {
+    document.getElementById('modalResourceTitle').value = '';
+    document.getElementById('modalResourceDesc').value = '';
+    populateSubjectDropdowns();
+    openModal('addResourceModal');
+  };
+
+  window.saveNewResource = function () {
+    const title = document.getElementById('modalResourceTitle').value.trim();
+    if (!title) {
+      showToast('Please enter a title for the resource', 'error');
+      return;
+    }
+
+    const subj = document.getElementById('modalResourceSubject').value;
+    const type = document.getElementById('modalResourceType').value;
+    const desc = document.getElementById('modalResourceDesc').value.trim() || 'Study notes and derivations.';
+
+    const newRes = {
+      id: Date.now(),
+      title,
+      subject: subj,
+      type,
+      desc
+    };
+
+    if (!studyData.library) studyData.library = [];
+    studyData.library.push(newRes);
+    saveData();
+    closeModal('addResourceModal');
+    renderLibraryView();
+    showToast('Resource added to library!', 'success');
+  };
+
+  window.deleteLibraryResource = function (id) {
+    studyData.library = studyData.library.filter(r => r.id !== id);
+    saveData();
+    renderLibraryView();
+    showToast('Resource removed from library', 'info');
+  };
+
+  window.openResourceViewer = function (title) {
+    showToast(`Opening "${title}"...`, 'info');
+    navigateTo('coach');
+    setTimeout(() => {
+      sendAiPrompt(`Please provide a comprehensive study breakdown and revision summary for: ${title}.`);
+    }, 200);
+  };
+
+  function renderAnalyticsCharts() {
+    const barCanvas = document.getElementById('analyticsWeeklyChart');
+    if (barCanvas) {
+      const ctx = barCanvas.getContext('2d');
+      const width = barCanvas.parentElement.clientWidth || 400;
+      const height = barCanvas.parentElement.clientHeight || 290;
+      barCanvas.width = width;
+      barCanvas.height = height;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const data = [
+        { day: 'Mon', h: 4.5 },
+        { day: 'Tue', h: 5.2 },
+        { day: 'Wed', h: 6.0 },
+        { day: 'Thu', h: 4.8 },
+        { day: 'Fri', h: 5.5 },
+        { day: 'Sat', h: 7.0 },
+        { day: 'Sun', h: 3.5 }
+      ];
+
+      const padding = 40;
+      const maxVal = 8;
+      const chartW = width - padding * 2;
+      const chartH = height - padding * 2;
+      const barW = Math.max(20, chartW / data.length - 24);
+
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.15)';
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= 4; i++) {
+        const y = padding + (chartH / 4) * i;
+        ctx.beginPath();
+        ctx.moveTo(padding, y);
+        ctx.lineTo(width - padding, y);
+        ctx.stroke();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '11px Poppins';
+        ctx.fillText(`${(maxVal - (i * (maxVal / 4))).toFixed(0)}h`, 10, y + 4);
+      }
+
+      data.forEach((d, i) => {
+        const x = padding + i * (chartW / data.length) + (chartW / data.length - barW) / 2;
+        const bH = (d.h / maxVal) * chartH;
+        const y = height - padding - bH;
+
+        const grad = ctx.createLinearGradient(0, y, 0, y + bH);
+        grad.addColorStop(0, '#38bdf8');
+        grad.addColorStop(1, '#1d4ed8');
+
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        if (ctx.roundRect) {
+          ctx.roundRect(x, y, barW, bH, [6, 6, 0, 0]);
+        } else {
+          ctx.rect(x, y, barW, bH);
+        }
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '11px JetBrains Mono';
+        ctx.textAlign = 'center';
+        ctx.fillText(`${d.h}h`, x + barW / 2, y - 6);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px Poppins';
+        ctx.fillText(d.day, x + barW / 2, height - padding + 20);
+      });
+    }
+
+    const donutCanvas = document.getElementById('analyticsDonutChart');
+    if (donutCanvas) {
+      const ctx = donutCanvas.getContext('2d');
+      const width = donutCanvas.parentElement.clientWidth || 400;
+      const height = donutCanvas.parentElement.clientHeight || 290;
+      donutCanvas.width = width;
+      donutCanvas.height = height;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const colors = ['#38bdf8', '#2563eb', '#06b6d4', '#10b981', '#f59e0b', '#8b5cf6'];
+      let slices = [];
+      
+      if (studyData && studyData.subjects.length > 0) {
+        const total = studyData.subjects.length;
+        slices = studyData.subjects.map((s, idx) => ({
+          label: s.name.replace(/^[^\w\s]+/, '').trim(),
+          val: Math.round(100 / total),
+          col: colors[idx % colors.length]
+        }));
+      } else {
+        slices = [{ label: 'General', val: 100, col: '#38bdf8' }];
+      }
+
+      const centerX = Math.min(width / 3, 130);
+      const centerY = height / 2;
+      const radius = Math.min(centerX, centerY) - 20;
+      const innerR = radius * 0.58;
+
+      let start = -Math.PI / 2;
+      slices.forEach(s => {
+        const angle = (s.val / 100) * (Math.PI * 2);
+        ctx.fillStyle = s.col;
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, start, start + angle);
+        ctx.arc(centerX, centerY, innerR, start + angle, start, true);
+        ctx.closePath();
+        ctx.fill();
+        start += angle;
+      });
+
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = 'bold 17px Montserrat';
+      ctx.textAlign = 'center';
+      ctx.fillText('84h', centerX, centerY - 2);
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '10px Poppins';
+      ctx.fillText('Total Hours', centerX, centerY + 14);
+
+      const legendX = centerX + radius + 25;
+      slices.forEach((s, idx) => {
+        const ly = centerY - 45 + idx * 26;
+        ctx.fillStyle = s.col;
+        ctx.beginPath();
+        ctx.arc(legendX, ly, 6, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = '12px Poppins';
+        ctx.textAlign = 'left';
+        ctx.fillText(s.label.substring(0, 18), legendX + 14, ly + 4);
+      });
+    }
+  }
+
+  /* ULTRA-FAST & IN-DEPTH AI ASSISTANT */
+  function buildSystemPrompt() {
+    const studentName = studyData.user.name || 'Lohith';
+    const targetExam = studyData.user.targetExam || 'Engineering Semester Finals';
+    const dailyGoal = studyData.user.dailyHoursGoal || 5;
+
+    let subjectSummary = studyData.subjects.map(s => {
+      const completed = s.topics.filter(t => t.done).length;
+      return `${s.name} (${completed}/${s.topics.length} topics mastered, ${s.mastery}% mastery)`;
+    }).join(', ');
+
+    return `You are StudySmart AI Assistant, a world-class academic tutor, STEM mentor, expert programmer, and master study strategist—combining the depth, precision, and speed of ChatGPT-4o and Google Gemini 2.0.
+
+User Profile:
+- Student Name: ${studentName}
+- Target Examination: ${targetExam}
+- Daily Study Target: ${dailyGoal} Hours/day
+- Current Enrolled Subjects & Mastery: ${subjectSummary}
+
+Core Instructions for High-Yield Responses:
+1. EXHAUSTIVE, IN-DEPTH & STRUCTURED: Always give thorough, full-length explanations with clear headings, bullet points, intuitive analogies, step-by-step mathematical logic, and complete runnable code when relevant. Never cut answers short.
+2. STEP-BY-STEP DERIVATIONS & MATHEMATICS: When answering STEM/Math/Physics/Chemistry problems, show all intermediate steps, formula derivations, characteristic equations, and exam tips.
+3. PROGRAMMING & ALGORITHMS: Provide complete, cleanly commented code (Python, C++, Java, JS, etc.) with time & space complexity analysis (Big-O) and trace diagrams.
+4. ACTIVE RECALL & SPHERICAL RETENTION: Provide practice questions, memory mnemonics, and common exam pitfalls to avoid.
+5. FORMATTING: Use clean markdown with headers (###), bold keywords, code blocks with language specifiers, and bulleted lists. Maintain an encouraging, intellectual, and elite coaching tone.`;
+  }
+
+  window.copyCode = function (btn) {
+    const pre = btn.closest('.code-block-container').querySelector('pre code');
+    if (pre) {
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = 'Copied!';
+        setTimeout(() => btn.innerText = orig, 2000);
+      });
+    }
+  };
+
+  function formatMarkdown(text) {
+    if (!text) return '';
+
+    let processed = text.replace(/```([a-zA-Z0-9_-]*)\n([\s\S]*?)```/g, function (match, lang, code) {
+      const language = lang || 'code';
+      const safeCode = code
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      return `
+        <div class="code-block-container">
+          <div class="code-block-header">
+            <span><i class="fas fa-terminal"></i> ${language.toUpperCase()}</span>
+            <button class="code-copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copy</button>
+          </div>
+          <pre><code>${safeCode}</code></pre>
+        </div>
+      `;
+    });
+
+    processed = processed
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+      .replace(/^## (.*$)/gim, '<h3>$1</h3>')
+      .replace(/^# (.*$)/gim, '<h3>$1</h3>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+      .replace(/^\s*[-•*]\s+(.*)$/gim, '<li>$1</li>')
+      .replace(/^\s*(\d+)\.\s+(.*)$/gim, '<li><strong>$1.</strong> $2</li>')
+      .replace(/\n\n/g, '<br><br>')
+      .replace(/\n/g, '<br>');
+
+    processed = processed.replace(/(<li>[\s\S]*?<\/li>)/g, '<ul>$1</ul>');
+    processed = processed.replace(/<\/ul>\s*<ul>/g, '');
+
+    return processed;
+  }
+
+  window.changeAiModel = function (model) {
+    studyData.user.selectedModel = model;
+    saveData();
+    showToast(`AI Engine set to ${model}`, 'info');
+  };
+
+  window.clearChatHistory = function () {
+    chatHistory = [];
+    const box = document.getElementById('chatStreamBox');
+    if (box) {
+      box.innerHTML = `
+        <div class="chat-msg bot">
+          <div class="chat-msg-avatar">AI</div>
+          <div class="chat-msg-bubble">
+            Chat history refreshed. What challenging engineering, STEM, or exam topic would you like to master next, <strong>${studyData.user.name}</strong>?
+          </div>
+        </div>
+      `;
+    }
+    showToast('Chat history cleared', 'info');
+  };
+
+  window.sendAiMessage = function () {
+    const input = document.getElementById('chatInput');
+    if (!input || isAiGenerating) return;
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+
+    appendChatMessage(text, 'user');
+    callGeminiAi(text);
+  };
+
+  window.sendAiPrompt = function (prompt) {
+    if (isAiGenerating) return;
+    appendChatMessage(prompt, 'user');
+    callGeminiAi(prompt);
+  };
+
+  function appendChatMessage(msg, sender, rawHtml = false) {
+    const box = document.getElementById('chatStreamBox');
+    if (!box) return;
+    const div = document.createElement('div');
+    div.className = `chat-msg ${sender}`;
+    const content = rawHtml ? msg : formatMarkdown(msg);
+    div.innerHTML = `
+      <div class="chat-msg-avatar">${sender === 'bot' ? 'AI' : 'You'}</div>
+      <div class="chat-msg-bubble">${content}</div>
+    `;
+    box.appendChild(div);
+    box.scrollTop = box.scrollHeight;
+    return div;
+  }
+
+  function showTypingIndicator() {
+    const box = document.getElementById('chatStreamBox');
+    if (!box) return null;
+    const div = document.createElement('div');
+    div.id = 'aiTypingBubble';
+    div.className = 'chat-msg bot';
+    div.innerHTML = `
+      <div class="chat-msg-avatar">AI</div>
+      <div class="chat-msg-bubble">
+        <div class="typing-indicator">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    `;
+    box.appendChild(div);
+    box.scrollTop = box.scrollHeight;
+    return div;
+  }
+
+  function removeTypingIndicator() {
+    const typing = document.getElementById('aiTypingBubble');
+    if (typing) typing.remove();
+  }
+
+  async function callGeminiAi(userPrompt) {
+    const apiKey = studyData.user.apiKey || "";
+    let model = studyData.user.selectedModel || "gemini-2.0-flash";
+    if (model.includes('/')) model = model.split('/')[1];
+    if (!model.startsWith('gemini')) model = "gemini-2.0-flash";
+
+    const sendBtn = document.getElementById('chatSendBtn');
+
+    isAiGenerating = true;
+    if (sendBtn) sendBtn.disabled = true;
+    showTypingIndicator();
+
+    const sysPrompt = buildSystemPrompt();
+    
+    chatHistory.push({ role: 'user', content: userPrompt });
+    if (chatHistory.length > 14) {
+      chatHistory = chatHistory.slice(chatHistory.length - 12);
+    }
+
+    let apiSuccess = false;
+    let reply = "";
+
+    try {
+      if (apiKey && apiKey.trim().length > 15 && !apiKey.startsWith('AQ.')) {
+        const geminiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey.trim())}`;
+        const response = await fetch(geminiEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                role: "user",
+                parts: [
+                  { text: `${sysPrompt}\n\nUser Question:\n${userPrompt}` }
+                ]
+              }
+            ],
+            generationConfig: {
+              temperature: 0.7,
+              maxOutputTokens: 8192,
+              topP: 0.95
+            }
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (reply && reply.length > 10) apiSuccess = true;
+        }
+      }
+    } catch (e) {
+      console.warn("Cloud AI API call attempted:", e);
+    }
+
+    if (!apiSuccess || !reply) {
+      // Simulate intelligent response delay for a natural feel
+      await new Promise(r => setTimeout(r, 450));
+      reply = generateSmartAcademicResponse(userPrompt);
+    }
+
+    try {
+      removeTypingIndicator();
+      chatHistory.push({ role: 'assistant', content: reply });
+      appendChatMessage(reply, 'bot');
+      playAudioBeep(520, 0.12);
+    } catch (renderErr) {
+      console.error("Error rendering message:", renderErr);
+    } finally {
+      removeTypingIndicator();
+      isAiGenerating = false;
+      if (sendBtn) sendBtn.disabled = false;
+    }
+  }
+
+  function generateSmartAcademicResponse(prompt) {
+    const q = prompt.toLowerCase();
+    
+    if (q.includes('2-hour') || q.includes('cram') || q.includes('plan') || q.includes('tonight')) {
+      return `### ⚡ Master 2-Hour High-Yield Study Sprint for ${studyData.user.name}
+
+Here is your optimized, high-retention study matrix designed for maximum cognitive stamina and exam scoring potential:
+
+---
+
+### ⏱️ Session Architecture & Time Blocks:
+
+* **00:00 – 00:45 | Block 1: High Priority / Mathematical Mastery (45 mins)**
+  * **Core Focus:** *Eigenvalues, Characteristic Polynomials & Diagonalization*
+  * **Methodology:** Close your textbook. Solve 3 university exam past-year questions from scratch without looking at solutions.
+  * **High-Yield Target:** Verify $\\text{Trace}(\\mathbf{A}) = \\sum \\lambda_i$ and $\\det(\\mathbf{A}) = \\prod \\lambda_i$ on each solved matrix.
+
+* **00:45 – 00:50 | ☕ Active Recovery Interval (5 mins)**
+  * Stand up, drink 300ml of cold water, do shoulder rolls, and avoid social media or bright screen switches.
+
+* **00:50 – 01:35 | Block 2: Logic & Data Structures (45 mins)**
+  * **Core Focus:** *Binary Search Tree (BST) In-Order Traversals & AVL Rotations*
+  * **Methodology:** Trace pointer reassignments on paper for **Left-Left (LL)** and **Right-Left (RL)** rotations. Write down the $O(\\log N)$ worst-case search proofs.
+
+* **01:35 – 01:40 | 🧘 Neural Reset Interval (5 mins)**
+  * Deep breathing (4-7-8 method) to consolidate short-term memory into working memory.
+
+* **01:40 – 02:00 | Block 3: Spaced Repetition Active Recall Drill (20 mins)**
+  * Write down 5 core definitions and formulas from memory on a blank sheet (*Feynman Protocol*).
+  * Flag any concept where you hesitated for tomorrow's 08:00 AM study slot.
+
+---
+
+### 💡 Golden Exam Strategy:
+Always tackle high-cognitive load analytical proofs in your first 45 minutes when prefrontal cortex glucose levels are at peak efficiency!`;
+    }
+    
+    if (q.includes('eigenvalue') || q.includes('eigenvector') || q.includes('linear algebra')) {
+      return `### 📐 Comprehensive Guide: Eigenvalues, Eigenvectors & Diagonalization
+
+#### 1. Intuition & Geometric Understanding
+When a square matrix $\\mathbf{A}_{n \\times n}$ acts on an arbitrary vector $\\mathbf{v}$, it typically does two things:
+1. It **rotates** the vector in coordinate space.
+2. It **stretches / shrinks** the length of the vector.
+
+An **Eigenvector** is a special non-zero vector that lies along a direction that experiences **no rotation at all**. Under matrix transformation $\\mathbf{A}$, the vector only undergoes scalar scaling:
+
+$$\\mathbf{A}\\mathbf{v} = \\lambda\\mathbf{v}$$
+
+Where:
+* $\\mathbf{A}$ = The transformation matrix.
+* $\\mathbf{v}$ = The **Eigenvector** (direction remains invariant).
+* $\\lambda$ = The **Eigenvalue** (scalar scaling factor).
+
+---
+
+#### 2. Step-by-Step Solving Algorithm (University Exam Proof):
+1. **Formulate the Characteristic Equation**:
+   $$(\\mathbf{A} - \\lambda\\mathbf{I})\\mathbf{v} = \\mathbf{0}$$
+   For non-trivial solutions ($\\mathbf{v} \\neq \\mathbf{0}$), the matrix $(\\mathbf{A} - \\lambda\\mathbf{I})$ must be singular:
+   $$\\det(\\mathbf{A} - \\lambda\\mathbf{I}) = 0$$
+
+2. **Calculate Eigenvalues ($\\lambda$)**:
+   Solve the characteristic polynomial roots $\\lambda_1, \\lambda_2, \\dots, \\lambda_n$.
+
+3. **Find the Eigenvectors ($\\mathbf{v}_i$)**:
+   Substitute each eigenvalue $\\lambda_i$ back into the homogeneous system:
+   $$(\\mathbf{A} - \\lambda_i\\mathbf{I})\\begin{bmatrix} x_1 \\\\ x_2 \\\\ \\vdots \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 0 \\\\ \\vdots \\end{bmatrix}$$
+   Apply Gaussian elimination to find the basis of the null space.
+
+---
+
+#### 3. Concrete 2x2 Matrix Example:
+Let $\\mathbf{A} = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}$.
+
+* **Step 1: Characteristic Determinant**:
+  $$\\det\\begin{pmatrix} 4-\\lambda & 1 \\\\ 2 & 3-\\lambda \\end{pmatrix} = (4-\\lambda)(3-\\lambda) - 2 = \\lambda^2 - 7\\lambda + 10 = 0$$
+* **Step 2: Factorize**:
+  $$(\\lambda - 5)(\\lambda - 2) = 0 \\implies \\lambda_1 = 5, \\quad \\lambda_2 = 2$$
+* **Step 3: Verification Check**:
+  * $\\text{Trace}(\\mathbf{A}) = 4 + 3 = 7 = 5 + 2$ ✅
+  * $\\det(\\mathbf{A}) = (4)(3) - (1)(2) = 10 = (5)(2)$ ✅
+
+---
+
+#### 💡 High-Yield Exam Takeaway:
+* Symmetric real matrices always have real eigenvalues and orthogonal eigenvectors.
+* If all eigenvalues are distinct, matrix $\\mathbf{A}$ is guaranteed to be diagonalizable into $\\mathbf{A} = \\mathbf{P}\\mathbf{D}\\mathbf{P}^{-1}$.`;
+    }
+
+    if (q.includes('binary search tree') || q.includes('bst') || q.includes('traversal') || q.includes('avl')) {
+      return `### 💻 Complete Mastery: Binary Search Trees (BST) & AVL Balance Rotations
+
+#### 1. Core BST Structural Property
+For every node $N$ in a Binary Search Tree:
+* **All keys in Left Subtree** $< N.\\text{key}$
+* **All keys in Right Subtree** $> N.\\text{key}$
+
+---
+
+#### 2. Tree Traversals Comprehensive Reference
+* **In-Order Traversal (Left $\\to$ Node $\\to$ Right)**:
+  * Traverses keys in **strictly sorted ascending numerical order**.
+* **Pre-Order Traversal (Node $\\to$ Left $\\to$ Right)**:
+  * Used to serialize/clone binary trees and evaluate prefix expressions.
+* **Post-Order Traversal (Left $\\to$ Right $\\to$ Node)**:
+  * Used for bottom-up node deletion, memory deallocation, and computing subtree sizes.
+
+---
+
+#### 3. AVL Self-Balancing Rotations
+An AVL tree maintains balance factor $\\text{BF} = \\text{height}(\\text{left}) - \\text{height}(\\text{right}) \\in \\{-1, 0, 1\\}$.
+
+\`\`\`python
+# Complete Python Implementation of BST Insertion & Search
+class BSTNode:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+
+class BinarySearchTree:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, key):
+        if not self.root:
+            self.root = BSTNode(key)
+        else:
+            self._insert_recursive(self.root, key)
+
+    def _insert_recursive(self, node, key):
+        if key < node.key:
+            if node.left is None:
+                node.left = BSTNode(key)
+            else:
+                self._insert_recursive(node.left, key)
+        elif key > node.key:
+            if node.right is None:
+                node.right = BSTNode(key)
+            else:
+                self._insert_recursive(node.right, key)
+
+    def inorder(self, node, result=None):
+        if result is None: result = []
+        if node:
+            self.inorder(node.left, result)
+            result.append(node.key)
+            self.inorder(node.right, result)
+        return result
+\`\`\`
+
+---
+
+#### 4. Time & Space Complexity Summary
+* **Search / Insert / Delete (Balanced AVL / Red-Black)**: $O(\\log N)$ Time, $O(1)$ Extra Space.
+* **Degenerate Skewed BST (Worst-case linked list)**: $O(N)$ Time.`;
+    }
+
+    if (q.includes('chemistry') || q.includes('spectroscopy') || q.includes('uv') || q.includes('ir')) {
+      return `### ⚗️ Applied Chemistry: UV-Vis & IR Spectroscopy Active Recall Master Drill
+
+#### 1. Fundamental Principles
+1. **UV-Visible Spectroscopy**:
+   * Measures electronic transitions ($\\sigma \\to \\sigma^*, \\pi \\to \\pi^*, n \\to \\pi^*$).
+   * Governed by the **Beer-Lambert Law**:
+     $$A = \\epsilon \\cdot c \\cdot l$$
+     Where $A$ = Absorbance, $\\epsilon$ = Molar absorptivity, $c$ = Concentration (mol/L), $l$ = Path length (cm).
+
+2. **Infrared (IR) Spectroscopy**:
+   * Measures molecular vibrational modes (stretching, bending, scissoring, rocking).
+   * **Rule of IR Activity**: A vibration is only IR active if it causes a **net change in the molecular dipole moment**.
+
+---
+
+#### 2. High-Yield Characteristic IR Absorption Peak Fingerprint:
+* **Alcohol / Phenol ($\\text{O-H}$ stretch)**: $3200 - 3600\\text{ cm}^{-1}$ (Broad, strong band due to hydrogen bonding).
+* **Carbonyl ($\\text{C=O}$ stretch)**: $1700 - 1750\\text{ cm}^{-1}$ (Sharp, extremely intense peak).
+* **Carboxylic Acid ($\\text{O-H}$ stretch)**: $2500 - 3300\\text{ cm}^{-1}$ (Very broad, overlaps C-H region).
+* **Alkyne ($\\text{C}\\equiv\\text{C}$ stretch)**: $2100 - 2260\\text{ cm}^{-1}$ (Sharp, medium).
+* **Aromatic Ring ($\\text{C=C}$ stretch)**: $1450 - 1600\\text{ cm}^{-1}$ (Multiple sharp spikes).`;
+    }
+
+    return `### 🎯 Complete Strategic Breakdown & Roadmap for ${prompt}
+
+Here is your comprehensive, exhaustive study strategy for **${prompt}**:
+
+1. **Foundational Concept Mastery**:
+   * Break down **${prompt}** using the first-principles method.
+   * Clarify the exact core theorems, axioms, definitions, and operational formulas.
+
+2. **Step-by-Step Problem Solving Protocol**:
+   * Complete 3 representative university past-year questions.
+   * Document all assumptions and intermediate derivation steps.
+
+3. **Active Recall & Spaced Repetition (Ebbinghaus Curve)**:
+   * **Day 1 (Today)**: Learn core theory and write formula cheat sheet.
+   * **Day 3**: Blind recall test without notes.
+   * **Day 7**: Timed mock exam questions.`;
+  }
+
+  window.openModal = function (modalId) {
+    const el = document.getElementById(modalId);
+    if (el) el.classList.add('active');
+  };
+
+  window.closeModal = function (modalId) {
+    const el = document.getElementById(modalId);
+    if (el) el.classList.remove('active');
+  };
+
+  window.openQuickAddModal = function () {
+    populateSubjectDropdowns();
+    const customInput = document.getElementById('modalTaskCustomSubject');
+    if (customInput) {
+      customInput.value = '';
+      customInput.style.display = 'none';
+    }
+    openModal('quickAddModal');
+  };
+
+  window.saveQuickTask = function () {
+    const selectVal = document.getElementById('modalTaskSubject')?.value;
+    const customVal = document.getElementById('modalTaskCustomSubject')?.value.trim();
+
+    let sub = selectVal;
+    if (selectVal === '__custom__' || customVal.length > 0) {
+      sub = customVal || 'General Study Session';
+      
+      // Auto-create subject if it doesn't exist yet
+      let existingSubj = studyData.subjects.find(s => s.name.toLowerCase() === sub.toLowerCase());
+      if (!existingSubj) {
+        existingSubj = {
+          id: 'sub_' + Date.now(),
+          name: sub.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]/) ? sub : `📚 ${sub}`,
+          mastery: 50,
+          topics: [
+            { name: "Fundamentals & Core Theory", done: false },
+            { name: "Practice Problems & Derivations", done: false }
+          ]
+        };
+        studyData.subjects.push(existingSubj);
+        populateSubjectDropdowns();
+      }
+      sub = existingSubj.name;
+    }
+
+    const top = document.getElementById('modalTaskTopic').value.trim() || 'General Study Session';
+    const time = document.getElementById('modalTaskTime').value.trim() || '06:00 – 07:00';
+    const prio = document.getElementById('modalTaskPriority').value;
+
+    studyData.schedule.push({
+      id: Date.now(),
+      time,
+      subject: sub,
+      topic: top,
+      priority: prio,
+      completed: false
+    });
+
+    saveData();
+    closeModal('quickAddModal');
+    renderDashboard();
+    renderPlannerView();
+    showToast(`Task added under "${sub}"!`, 'success');
+  };
+
+  window.clearAllAppDashboardData = function () {
+    if (confirm('Clear ALL schedule tasks, subject progress, library resources, and analytics metrics completely?')) {
+      studyData.schedule = [];
+      studyData.subjects = [];
+      studyData.library = [];
+      studyData.user.completedToday = 0;
+      studyData.user.streakDays = 0;
+
+      saveData();
+      populateSubjectDropdowns();
+      renderDashboard();
+      renderPlannerView();
+      renderLibraryView();
+      renderAnalyticsCharts();
+      showToast('✨ All dashboard study data & analytics cleared completely!', 'info');
+      playAudioBeep(440, 0.2);
+    }
+  };
+
+  window.updateProfile = function () {
+    const name = document.getElementById('profileUserName')?.value.trim() || 'Lohith';
+    const year = document.getElementById('profileYearOfStudy')?.value || '3rd Year (Junior B.Tech)';
+
+    studyData.user.name = name;
+    studyData.user.yearOfStudy = year;
+
+    saveData();
+    renderProfile();
+    renderDashboard();
+    showToast('✨ Profile updated successfully!', 'success');
+  };
+
+  window.resetAllData = function () {
+    if (confirm('Reset all timetable sessions, library resources, and subjects back to default state?')) {
+      localStorage.removeItem('studysmart_blue_v5');
+      loadData();
+      renderDashboard();
+      renderPlannerView();
+      renderLibraryView();
+      showToast('Data reset to defaults.', 'info');
+    }
+  };
+
+  function showToast(msg, type = 'info') {
+    const shelf = document.getElementById('toastShelf');
+    if (!shelf) return;
+    const toast = document.createElement('div');
+    toast.className = 'toast-popup';
+    const icon = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-triangle' : 'fa-info-circle';
+    const iconColor = type === 'success' ? 'var(--emerald)' : type === 'error' ? 'var(--rose)' : 'var(--accent-cyan)';
+    toast.innerHTML = `<i class="fas ${icon}" style="color: ${iconColor};"></i> <span>${msg}</span>`;
+    shelf.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(10px)';
+      toast.style.transition = '0.3s';
+      setTimeout(() => toast.remove(), 300);
+    }, 3200);
+  }
+
+  let audioCtx = null;
+  function playAudioBeep(freq = 520, dur = 0.1) {
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + dur);
+    } catch (e) {}
+  }
+
+  function initApp() {
+    initSplashIntro();
+    loadData();
+    renderDashboard();
+    renderPlannerView();
+    renderLibraryView();
+
+    window.addEventListener('resize', () => {
+      const p = document.getElementById('page-analytics');
+      if (p && p.classList.contains('active')) {
+        renderAnalyticsCharts();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+  } else {
+    initApp();
+  }
+
+})();
+
+</script>
+</body>
+</html>
